@@ -1,0 +1,24 @@
+
+
+coùùande_tag
+
+1. Nom et prénom, numéro, adresse
+2. Commande simple ou express
+3. Lavage simple ou avec repassage ou teinture
+4. Type de linge et quantité
+5. Prix unitaires
+6. Prix total
+7. Réduction ( sur le prix unitaire ou sur le prix total )
+8. Payer non livré
+9. Payements à la livraison
+10. Date de réception
+11. Date de livraison ( par défaut 72h )
+12. Reprogramation des commandes non livrée
+13. Total de commandes par jour, total de commande non livré et livrée
+14. Chiffres d'affaires journalière,  hebdomadaire,  mensuel et annuelle
+15. Commande disponible au autres agences avec leur détails.
+16. Le personnel
+17. Service de livraison
+18. Dépense
+19. Abonnement
+20. Identifier chaque commandes par un numéro
