@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="col-12 ">
-        <div style="padding-top: 10px">
+        <div>
             <div class="card-body">
                 <!-- Button trigger modal -->
                 <div class="row">

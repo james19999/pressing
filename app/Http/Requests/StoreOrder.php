@@ -27,6 +27,15 @@ class StoreOrder extends FormRequest
             'quantities.*' => 'required|integer|min:1',
             'prices.*' => 'required|numeric|min:0',
             'totals.*' => 'required|numeric|min:0',
+            'pressing_id' =>'required',
+            'payment_method'=>'required',
+            'type_lavage'=>'required|array',
+             'date_recived'=>'required',
+             'order_type'=>'required',
+             'remis'=>'required',
+             'total_remis'=>'required',
+             'total'=>'required',
+             'date_delivered'=>'required'
         ];
     }
 }

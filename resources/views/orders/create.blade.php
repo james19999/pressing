@@ -6,6 +6,15 @@
     <div class="container">
         <div class="row">
             @include('partials.navs-links')
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
@@ -16,9 +25,9 @@
                         <div class="form-group">
                             <label for="customer_id">Customer</label>
                             <select name="customer_id" id="customer_id" class="form-control js-example-basic-single">
-                                <option value="default">Nouveau client</option>
                                 @foreach ($customers as $customer)
-                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                    <option value="{{ $customer->id }}">{{ $customer->name }} | {{ $customer->phone }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -33,54 +42,56 @@
                     </div>
                     <div class="col-md-3">
                         <label for="">Date de réception</label>
-                        <input type="date" class="form-control" placeholder="Date">
+                        <input type="date" name="date_recived" value="{{ old('date_recived') }}" class="form-control"
+                            placeholder="Date">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         <label for="">Type de commande</label>
 
-                        <select name="type" id="" class="form-control">
+                        <select name="order_type" id="" class="form-control">
 
-                            <option value="">Simple</option>
-                            <option value="">Expresse</option>
+                            <option value="Simple">Simple</option>
+                            <option value="Expresse">Expresse</option>
                         </select>
 
                     </div>
                     <div class="col-md-3">
                         <label for="">Type de lavage</label>
 
-                        <select name="type" id="" class="form-control js-example-basic-multiple" name="tage[]"
+                        <select id="" class="form-control js-example-basic-multiple" name="type_lavage[]"
                             multiple="multiple">
 
-                            <option value="">Lavage avec teinture</option>
-                            <option value="">Lavage simple</option>
-                            <option value="">Lavage avec répassage</option>
+                            <option value="Lavage avec teinture">Lavage avec teinture</option>
+                            <option value="Lavage simple">Lavage simple</option>
+                            <option value="Lavage avec repassage">Lavage avec repassage</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label for="">Type de paiement</label>
+                        <label for="">Status</label>
 
-                        <select name="type" id="" class="form-control ">
+                        <select name="payment_method" id="" class="form-control ">
 
-                            <option value="">Payer</option>
-                            <option value="">Impayer</option>
+                            <option value="Payer">Payer</option>
+                            <option value="Impayer">Impayer</option>
                         </select>
                     </div>
                     <div class="col-md-3">
                         <label for="">Date de livraison {{ $hoursDifference }} heures </label>
 
-                        <input type="text" class="form-control" readonly value="{{ old('date', $threeDaysLater) }}"
-                            placeholder="Date">
+                        <input type="text" name="date_delivered" class="form-control" readonly
+                            value="{{ old('date_delivered', $threeDaysLater) }}" placeholder="Date">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <label for="">Sélectionnez le pressing</label>
-                        <select name="" id="" class="form-control">
-                            <option value="">1</option>
-                            <option value="">1</option>
-                            <option value="">1</option>
+                        <select name="pressing_id" id="" class="form-control">
+                            <option value="">Pressing</option>
+                            @foreach ($pressings as $pressing)
+                                <option value="{{ $pressing->id }}">{{ $pressing->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -90,7 +101,7 @@
             <div class="shadow card">
                 <div class="card-header card-head-primary">
                     <div class="card-title">
-                        <h3>Ajouter des linges</h3>
+                        <h3>Linges</h3>
                     </div>
                 </div>
                 <div class="card-body">
@@ -101,6 +112,7 @@
                                 <div class="col-md-4">
                                     <label for="garment_id">Garment</label>
                                     <select name="garments[]" class="form-control garment-select ">
+                                        <option value="">Choisir un vêtement</option>
                                         @foreach ($garments as $garment)
                                             <option value="{{ $garment->id }}" data-price="{{ $garment->price }}">
                                                 {{ $garment->name }}</option>
@@ -146,19 +158,20 @@
                         <div class="col-md-3">
                             <div class="mt-3 form-group">
                                 <label for="discount">Discount (%)</label>
-                                <input type="number" id="discount" class="form-control" value="0">
+                                <input type="number" name="remis" id="discount" class="form-control"
+                                    value="0">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mt-3 form-group">
                                 <label for="grand-total">Grand Total</label>
-                                <input type="number" id="grand-total" class="form-control" readonly>
+                                <input type="number" name="total_remis" id="grand-total" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mt-3 form-group">
                                 <label for="final-total">Final Total (After Discount)</label>
-                                <input type="number" id="final-total" class="form-control" readonly>
+                                <input type="number" name="total" id="final-total" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -226,6 +239,12 @@
                 var finalTotal = grandTotal - (grandTotal * (discount / 100));
                 $('#final-total').val(finalTotal.toFixed(2));
             }
+        });
+
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+
+
         });
     </script>
 @endsection

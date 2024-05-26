@@ -26,6 +26,18 @@ class UpdateOrder extends FormRequest
             'garments' => 'required|array',
             'quantities' => 'required|array',
             'quantities.*' => 'required|integer|min:1',
+            'type_lavage'=>'required|array',
+            'order_type'=>'required',
+
+
         ];
     }
+
+    public function messages(): array
+{
+    return [
+        'type_lavage.required' => 'Sélectionner les types de lavages (Lavage avec teinture,Lavage simple,Lavage avec repassage)',
+        'order_type.required' => 'Sélectionner le type de commande (simple ou expresse)',
+    ];
+}
 }

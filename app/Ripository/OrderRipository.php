@@ -3,12 +3,12 @@ namespace App\Ripository;
 
 use App\Models\Order;
 use App\Models\Garment;
-use App\Models\Customer;
 use App\Models\OrderItem;
-use Illuminate\Support\Facades\Validator;
+use App\Traits\TraitDefault;
 
 class OrderRipository{
 
+    use  TraitDefault;
     public function get_all_order(){
         return Order::with('customer')->latest()->get();
     }
@@ -29,7 +29,17 @@ class OrderRipository{
 
     public function update_order(array $data,$id){
         $order= $this->get_order($id);
-        $order->customer_id = $data['customer_id'];
+
+         $order->customer_id = $data['customer_id'];
+         $order->pressing_id =$data['pressing_id'] ;
+        //  $order->payment_method =$data['payment_method'];
+         $order->type_lavage =$data['type_lavage'];
+         $order->date_recived =$data['date_recived'];
+         $order->order_type =$data['order_type'];
+         $order->remis =$data['remis'];
+         $order->total_remis =$data['total_remis'];
+         $order->total =$data['total'];
+
         $order->save();
 
         $order->items()->delete();
@@ -51,27 +61,20 @@ class OrderRipository{
 
     public function create_order(array $data){
 
-          if($data['customer_id']=="default"){
-             $validate= Validator::make($data,[
-                 'name'=>'name',
-                 'phone'=>'required|unique:customers,phone',
-                 'address'=>'required',
-             ])->validate();
-          }
-          $exist =Customer::where('phone' ,$data['phone'])->first();
-           if($exist){
-            return toastr()->info("Le client existe déjà");
-           }else{
-            $costumer= Customer::create([
-                'name'=>$data['name'],
-                'phone'=>str_replace(' ', '',$data['phone']),
-                'address'=>$data['address'],
-
-            ]);
-           }
         $order = Order::create([
-            'customer_id' => $data['customer_id']=="default" ? $costumer->id : $data['customer_id']  ,
+            'customer_id' => $data['customer_id'],
             'status' => 'pending',
+            'pressing_id'=>$data['pressing_id'] ,
+            'payment_method'=>$data['payment_method'],
+            'type_lavage'=>$data['type_lavage'],
+            'date_recived'=>$data['date_recived'],
+            'order_type'=>$data['order_type'],
+            'remis'=>$data['remis'],
+            'total_remis'=>$data['total_remis'],
+            'total'=>$data['total'],
+            'date_delivered'=>$data['date_delivered'],
+            'order_number'=>$this->code_generate(),
+
         ]);
 
         for ($i = 0; $i < count($data['garments']); $i++) {

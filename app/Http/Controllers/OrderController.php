@@ -14,12 +14,14 @@ use App\Http\Requests\UpdateOrder;
 use App\Ripository\OrderRipository;
 use App\Ripository\GarmentRipository;
 use App\Ripository\CustumerRipository;
+use App\Ripository\PressingRipository;
 
 class OrderController extends Controller
 {
      public function __construct(protected OrderRipository $orderRipository ,
      protected CustumerRipository $custumerRipository,
      protected GarmentRipository $garmentRipository,
+     protected PressingRipository $pressingRipository,
      ){
       $this->orderRipository=$orderRipository;
       $this->custumerRipository=$custumerRipository;
@@ -42,7 +44,8 @@ class OrderController extends Controller
 
         $customers = $this->custumerRipository->get_all_custumer();
         $garments = $this->garmentRipository->get_all_Garment();
-        return view('orders.create', compact('customers', 'garments' ,'threeDaysLater' ,'hoursDifference'));
+        $pressings=$this->pressingRipository->get_all_pressing();
+        return view('orders.create', compact('customers','pressings', 'garments' ,'threeDaysLater' ,'hoursDifference'));
     }
 
     public function store(StoreOrder $storeOrder)
@@ -61,10 +64,18 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = $this->orderRipository->edit_oder($id);
+        $today = Carbon::now();
+        $threeDaysLater = $today->addDays(3);
+
+        $threeDaysLaters = $today->copy()->addDays(3);
+
+        $hoursDifference = $today->diffInHours($threeDaysLaters);
+
         $customers = $this->custumerRipository->get_all_custumer();
         $garments = $this->garmentRipository->get_all_Garment();
+        $pressings=$this->pressingRipository->get_all_pressing();
 
-        return view('orders.edit', compact('order', 'customers', 'garments'));
+        return view('orders.edit', compact('order', 'customers','pressings', 'garments' ,'threeDaysLater' ,'hoursDifference'));
     }
 
     public function update(UpdateOrder $request, $id)
