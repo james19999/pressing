@@ -87,4 +87,13 @@ class OrderRipository{
          toastr()->success('Commande effectuée');
         return redirect()->route('orders.index');
     }
+
+    public function delete_order($id){
+      $order=$this->get_order($id);
+      $order->delete();
+
+      toastr()->success('Commande supprimé');
+      return redirect()->route('orders.index');
+
+    }
 }

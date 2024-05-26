@@ -6,7 +6,11 @@
     <div class="container">
         <div class="row">
             @include('partials.navs-links')
-            @if ($errors->any())
+
+        </div>
+        <div class="row">
+              <div class="col-md-12">
+                @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -15,15 +19,16 @@
                     </ul>
                 </div>
             @endif
+              </div>
         </div>
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
-            <div class="p-4 mt-3 bg-white ">
+            <div class="p-4 mt-3 bg-white">
 
                 <div class="mt-3 row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="customer_id">Customer</label>
+                            <label for="customer_id">Client</label>
                             <select name="customer_id" id="customer_id" class="form-control js-example-basic-single">
                                 @foreach ($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->name }} | {{ $customer->phone }}
@@ -110,21 +115,21 @@
                         <div class="order-item">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="garment_id">Garment</label>
+                                    <label for="garment_id">Linge</label>
                                     <select name="garments[]" class="form-control garment-select ">
                                         <option value="">Choisir un vêtement</option>
                                         @foreach ($garments as $garment)
                                             <option value="{{ $garment->id }}" data-price="{{ $garment->price }}">
-                                                {{ $garment->name }}</option>
+                                                {{ $garment->name }} | {{ $garment->price }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="quantity">Quantity</label>
+                                    <label for="quantity">Quantité</label>
                                     <input type="number" name="quantities[]" class="form-control quantity" min="1">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="price">Price</label>
+                                    <label for="price">Prix</label>
                                     <input type="number" name="prices[]" class="form-control price" readonly>
                                 </div>
                                 <div class="col-md-2">
@@ -152,25 +157,25 @@
                         <div class="col-md-3">
                             <label for="discount">Ajouter une ligne de linge</label>
 
-                            <button type="button" class="btn btn-primary" id="add-order-item">Add Item</button>
+                            <button type="button" class="btn btn-primary" id="add-order-item">Ligne</button>
 
                         </div>
                         <div class="col-md-3">
                             <div class="mt-3 form-group">
-                                <label for="discount">Discount (%)</label>
+                                <label for="discount">Remise (%)</label>
                                 <input type="number" name="remis" id="discount" class="form-control"
                                     value="0">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mt-3 form-group">
-                                <label for="grand-total">Grand Total</label>
+                                <label for="grand-total">Sous Total</label>
                                 <input type="number" name="total_remis" id="grand-total" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="mt-3 form-group">
-                                <label for="final-total">Final Total (After Discount)</label>
+                                <label for="final-total"> Total </label>
                                 <input type="number" name="total" id="final-total" class="form-control" readonly>
                             </div>
                         </div>
@@ -180,7 +185,7 @@
             <div class="row">
                 <div class="col-md-5">
 
-                    <button type="submit" class="mt-4 btn btn-success btn-block">Submit</button>
+                    <button type="submit" class="mt-4 btn btn-success btn-block " style="color: white">Valider</button>
                 </div>
             </div>
     </div>

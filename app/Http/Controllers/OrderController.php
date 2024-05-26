@@ -84,4 +84,10 @@ class OrderController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+    # code...
+    return $this->orderRipository->delete_order($id);
+    }
+
 }

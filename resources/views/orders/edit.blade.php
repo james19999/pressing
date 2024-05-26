@@ -172,7 +172,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="mt-5 btn btn-primary" id="add-order-item">Add Item</button>
+                            <button type="button" class="mt-5 btn btn-primary" id="add-order-item">Ligne</button>
 
                         </div>
                         <div class="col-md-3">

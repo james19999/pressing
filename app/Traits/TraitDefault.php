@@ -5,7 +5,7 @@ Trait TraitDefault{
     public  function code_generate($n = 3)
     {
         $characters = "0123456789";
-        $randomString = "Liv"."-" . '';
+        $randomString = "Lav"."-" . '';
 
         for ($i = 0; $i < $n; $i++) {
             $index = rand(0, strlen($characters) - 1);
