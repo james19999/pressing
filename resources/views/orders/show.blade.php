@@ -65,7 +65,7 @@
                     <strong>
                         <p>Status: Livré</p>
                     </strong>
-                   @elseif ($order->status == 'cancelled')
+                   @elseif ($order->status=='canceled')
                     <strong>
                         <p>Status: Annulé</p>
                     </strong>
@@ -121,10 +121,15 @@
 
                        </div>
                        <div class="col-md-3">
-                           1
+                        <button type="button" class="btn btn-primary active" data-toggle="modal" data-target="#verticalCenteredModalDemo">
+                            Payer la commande
+                        </button>
+
                        </div>
                        <div class="col-md-3">
-                           1
+                        <button type="button" class="btn btn-primary active" data-toggle="modal" data-target="#verticalCenteredModal">
+                            Valider la commande
+                        </button>
                        </div>
                        <div class="col-md-3">
                            1
@@ -133,6 +138,79 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="verticalCenteredModalDemo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="verticalCenteredModalDemoLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="verticalCenteredModalDemoLabel">Payer la commande
+                                de Mr/Mm : {{ $order->customer->name }}
+                            </h4>
+                            <button type="button" class="btn btn-light btn-circle dismiss" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="material-icons">close</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                 <form action="{{ route('paid-order-valid',$order) }}" method="POST">
+                                     @csrf
+                                      @method('PUT')
+                                    <select name="payment_method" id="" class="form-control ">
 
+                                        <option value="Payer">Payer</option>
+                                        <option value="Impayer">Impayer</option>
+                                    </select>
+                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-success">Valider</button>
+                        </div>
+                    </div>
+                      </form>
+                </div>
+            </div>
+
+            <div class="modal fade" id="verticalCenteredModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="verticalCenteredModalDemoLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="verticalCenteredModalDemoLabel">Valider la commande
+                                de Mr/Mm : {{ $order->customer->name }}
+                            </h4>
+                            <button type="button" class="btn btn-light btn-circle dismiss" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="material-icons">close</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                                 <form action="{{ route('change-status-order',$order) }}" method="POST">
+                                     @csrf
+                                      @method('PUT')
+                                      <label for="" class="mt-2">Status</label>
+                                    <select name="status" id="" class="form-control ">
+                                        <option value="delivered">Valider</option>
+                                        <option value="canceled">Annuler</option>
+                                    </select>
+                                    <label for="" class="mt-1">Entrer la raison d'annulation</label>
+                                    <Textarea  name="raison" class="mt-2 form-control" >
+                                        {{ old('raison') }}
+                                    </Textarea>
+                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-success">Valider</button>
+                            <div class="col-md-12">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                      </form>
+                </div>
+            </div>
     </div>
 @endsection

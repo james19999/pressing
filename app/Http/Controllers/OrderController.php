@@ -90,4 +90,12 @@ class OrderController extends Controller
     return $this->orderRipository->delete_order($id);
     }
 
+    public function paid_order_valid(Request $request ,$id){
+       return $this->orderRipository->paid_order($request->all(),$id);
+    }
+
+    public function change_status_order(Request $request ,$id){
+      return $this->orderRipository->changer_status_order($request->all(),$id);
+    }
+
 }

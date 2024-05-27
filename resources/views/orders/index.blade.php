@@ -66,10 +66,10 @@
                                     <td style="color: black ">
                                         {{ $order->payment_method }} |
                                         @if ($order->status == 'pending')
-                                            <span class="badge badge-warning">En cours</span>
+                                            <span class="badge badge-warning  text-white">En cours</span>
                                         @elseif ($order->status == 'delivered')
-                                            <span class="badge badge-success">Livré</span>
-                                        @elseif ($order->status == 'cancelled')
+                                            <span class="badge badge-success text-white">Livré</span>
+                                        @elseif ($order->status == 'canceled')
                                             <span class="badge badge-danger">Annulé</span>
                                         @endif
 

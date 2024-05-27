@@ -20,7 +20,8 @@ class Order extends Model
      'total_remis',
      'total',
      'date_delivered',
-     'order_number'
+     'order_number',
+     'raison'
 
     ];
     protected $casts = [

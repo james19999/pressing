@@ -1,10 +1,12 @@
 <?php
 namespace App\Ripository;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Garment;
 use App\Models\OrderItem;
 use App\Traits\TraitDefault;
+use Illuminate\Support\Facades\Validator;
 
 class OrderRipository{
 
@@ -72,7 +74,7 @@ class OrderRipository{
             'remis'=>$data['remis'],
             'total_remis'=>$data['total_remis'],
             'total'=>$data['total'],
-            'date_delivered'=>$data['date_delivered'],
+            'date_delivered'=>$data['order_type']=='Expresse' ?  $data['date_expresse'] :$data['date_delivered'],
             'order_number'=>$this->code_generate(),
 
         ]);
@@ -95,5 +97,47 @@ class OrderRipository{
       toastr()->success('Commande supprimé');
       return redirect()->route('orders.index');
 
+    }
+
+
+    public function  paid_order(array $data, $id){
+       $order=$this->get_order($id);
+       if($order){
+            $order->payment_method = $data['payment_method'];
+            $order->save();
+            toastr()->success("Commande " ,$data['payment_method']);
+            return back();
+       }else{
+        toastr()->error('Commande non trouvé');
+        return back();
+       }
+    }
+
+    public function  changer_status_order(array $data,$id){
+        $order=$this->get_order($id);
+
+        if($order){
+
+           if($data['status']=="delivered"){
+            $order->status=$data['status'];
+            $order->date_delivered=Carbon::now();
+            toastr()->success("Commande validé ");
+
+
+
+        }elseif($data['status']=="canceled"){
+           Validator::make($data,[
+             'raison'=>'required'
+           ])->validate();
+           $order->status=$data['status'];
+           $order->raison=$data['raison'];
+           toastr()->success("Commande annulé ");
+
+
+        }
+
+        $order->save();
+        return back();
+    }
     }
 }

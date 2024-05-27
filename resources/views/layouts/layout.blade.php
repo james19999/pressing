@@ -45,19 +45,19 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="{{ route('home') }}" class="active">
+                        <a href="{{ route('home') }}" class="{{ request()->is('home') ? 'active' : '' }}">
                             <span class="icon material-icons">home</span>
                             <span class="text">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('pressings.index') }}" class="">
+                        <a href="{{ route('pressings.index') }}" class="{{ request()->is('pressings') ? 'active' : '' }}">
                             <span class="icon material-icons">checkroom</span>
                             <span class="text">Pressing</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('orders.index') }}" class="">
+                        <a href="{{ route('orders.index') }}" class=" {{ request()->is('orders') ? 'active' : '' }}">
                             <span class="icon material-icons">shopping_cart</span>
                             <span class="text">Commandes</span>
                         </a>

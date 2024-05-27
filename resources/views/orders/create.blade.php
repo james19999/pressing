@@ -6,20 +6,24 @@
     <div class="container">
         <div class="row">
             @include('partials.navs-links')
+            <button type="button" class="btn btn-primary active ml-2" data-toggle="modal"
+                data-target="#verticalCenteredModalDemo">
+                Nouveau client
+            </button>
 
         </div>
         <div class="row">
-              <div class="col-md-12">
+            <div class="col-md-12">
                 @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-              </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
         </div>
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
@@ -38,29 +42,41 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <label for="">Téléphone client</label>
-                        <input type="text" class="form-control" placeholder="Téléphone client">
+                        <label for="">Type de commande</label>
+
+                        <select name="order_type" id="order_type" class="form-control">
+                            <option value="">--------</option>
+                            <option value="Simple" selected>Simple</option>
+                            <option value="Expresse">Expresse</option>
+                        </select>
+
                     </div>
-                    <div class="col-md-3">
+                    {{--  <div class="col-md-3">
                         <label for="">Adresse du client</label>
                         <input type="text" class="form-control" placeholder="Téléphone client">
-                    </div>
+                    </div>  --}}
                     <div class="col-md-3">
                         <label for="">Date de réception</label>
                         <input type="date" name="date_recived" value="{{ old('date_recived') }}" class="form-control"
                             placeholder="Date">
                     </div>
+                    <div class="col-md-3">
+                        <label for="">Sélectionnez le pressing</label>
+                        <select name="pressing_id" id="" class="form-control">
+                            <option value="">----------</option>
+                            @foreach ($pressings as $pressing)
+                                <option value="{{ $pressing->id }}">{{ $pressing->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="row">
+
+
                     <div class="col-md-3">
-                        <label for="">Type de commande</label>
-
-                        <select name="order_type" id="" class="form-control">
-
-                            <option value="Simple">Simple</option>
-                            <option value="Expresse">Expresse</option>
-                        </select>
-
+                        <label for="">Date expresse optionnel</label>
+                        <input type="date" id="date_expresse" class="form-control" name="date_expresse"
+                            placeholder="Téléphone client">
                     </div>
                     <div class="col-md-3">
                         <label for="">Type de lavage</label>
@@ -78,8 +94,8 @@
 
                         <select name="payment_method" id="" class="form-control ">
 
-                            <option value="Payer">Payer</option>
                             <option value="Impayer">Impayer</option>
+                            <option value="Payer">Payer</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -89,17 +105,7 @@
                             value="{{ old('date_delivered', $threeDaysLater) }}" placeholder="Date">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="">Sélectionnez le pressing</label>
-                        <select name="pressing_id" id="" class="form-control">
-                            <option value="">Pressing</option>
-                            @foreach ($pressings as $pressing)
-                                <option value="{{ $pressing->id }}">{{ $pressing->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+
             </div>
 
 
@@ -190,6 +196,53 @@
             </div>
     </div>
     </form>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="verticalCenteredModalDemo" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="verticalCenteredModalDemoLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="verticalCenteredModalDemoLabel">Nouveau client
+                    </h4>
+                    <button type="button" class="btn btn-light btn-circle dismiss" data-dismiss="modal"
+                        aria-label="Close">
+                        <span aria-hidden="true" class="material-icons">close</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container mt-2">
+                        <h2>Créer un Client</h2>
+                        <form action="{{ route('costumers.store') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">Nom</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{ old('name') }}" placeholder="Entrez le nom" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Téléphone</label>
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    value="{{ old('phone') }}" placeholder="Entrez le numéro de téléphone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Adresse</label>
+                                <input type="text" class="form-control" id="address" name="address"
+                                    value="{{ old('address') }}" placeholder="Entrez l'adresse" required>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-success text-white">Valider</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -248,8 +301,27 @@
 
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
+        });
 
 
+        $(document).ready(function(){
+            // Fonction pour mettre à jour l'état du champ date_expresse
+            function updateDateExpresseState() {
+                var selectedValue = $('#order_type').val();
+                if (selectedValue === 'Simple') {
+                    $('#date_expresse').prop('readonly', true);
+                } else {
+                    $('#date_expresse').prop('readonly', false);
+                }
+            }
+
+            // Appeler la fonction lors du chargement initial de la page
+            updateDateExpresseState();
+
+            // Mettre à jour l'état lorsque la sélection change
+            $('#order_type').change(function(){
+                updateDateExpresseState();
+            });
         });
     </script>
 @endsection
