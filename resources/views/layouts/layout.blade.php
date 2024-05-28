@@ -69,75 +69,10 @@
                         </a>
                     </li>
                     <li class="separator">
-                        <span>Applications & Pages</span>
+                        <span>Utilisateurs</span>
                     </li>
-                    <li>
-                        <a href="#collapseSubmenu1" class="" data-toggle="collapse">
-                            <span class="caret material-icons">arrow_right</span>
-                            <span class="icon material-icons">apps</span>
-                            <span class="text">Applications</span>
-                        </a>
-                        <ul class="collapse" id="collapseSubmenu1">
-                            <li>
-                                <a href="mail.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Mailbox</span>
-                                    <span class="badge badge-transparent-danger">1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="calendar.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Calendar</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="kanban.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Kanban</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="contacts.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Contacts</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#authenticationPage" class="" data-toggle="collapse">
-                            <span class="caret material-icons">arrow_right</span>
-                            <span class="icon material-icons">verified_user</span>
-                            <span class="text">Authentication</span>
-                        </a>
-                        <ul class="collapse" id="authenticationPage">
-                            <li>
-                                <a href="login.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Login</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="register.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Register</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="relogin.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Re Login</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="reset.html" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Forgot Password</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+
+
                     <li>
                         <a href="#errorPages" class="" data-toggle="collapse">
                             <span class="caret material-icons">arrow_right</span>
@@ -155,18 +90,6 @@
                                 <a href="{{ route('roles.index') }}"  class="">
                                     <span class="icon material-icons">remove</span>
                                     <span class="text">Liste des rôles</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="500.html" target="_blank" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">500 Page</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="503.html" target="_blank" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">503 Page</span>
                                 </a>
                             </li>
                         </ul>

@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="container m-2">
+    @include('partials.nav-links')
+
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Register</div>
                 <div class="card-body">
@@ -57,7 +59,9 @@
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">Modifier</button>
+                        <a href="{{ route('users.index') }}" type="button" class="btn btn-danger">Annuler</a>
+                        <button type="submit" class="btn btn-success text-white">Modifier</button>
+
                     </form>
                 </div>
             </div>

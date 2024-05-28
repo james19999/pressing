@@ -32,8 +32,8 @@
                                         value="{{ old('name') }}" placeholder="Libelle" required>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-primary">Valider</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-success text-white">Valider</button>
                             </div>
                             </form>
                         </div>
@@ -120,9 +120,9 @@
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
+                                                <button type="button" class="btn btn-danger"
                                                     data-dismiss="modal">Fermer</button>
-                                                <button type="submit" class="btn btn-primary">Modifier</button>
+                                                <button type="submit" class="btn btn-success text-white">Modifier</button>
                                             </div>
                                             </form>
                                         </div>
@@ -149,7 +149,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
                                                     data-dismiss="modal">Non</button>
-                                                <button type="submit" class="btn btn-primary">Oui</button>
+                                                <button type="submit" class="btn btn-success text-white">Oui</button>
                                             </div>
                                             </form>
                                         </div>

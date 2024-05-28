@@ -1,11 +1,12 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container m-2">
+<div class="container m-2 ">
+       @include('partials.nav-links')
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Register</div>
+                <div class="card-header">Créer un utilisateur</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.store') }}">
                         @csrf
@@ -54,7 +55,8 @@
                                 </span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <a href="{{ route('users.index') }}" type="button" class="btn btn-danger">Annuler</a>
+                        <button type="submit" class="btn btn-success text-white">Enregistrer</button>
                     </form>
                 </div>
             </div>

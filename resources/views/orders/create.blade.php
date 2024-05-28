@@ -126,7 +126,7 @@
                                         <option value="">Choisir un vêtement</option>
                                         @foreach ($garments as $garment)
                                             <option value="{{ $garment->id }}" data-price="{{ $garment->price }}">
-                                                {{ $garment->name }} | {{ $garment->price }}</option>
+                                                {{ $garment->name }} | {{ $garment->price }} XOF</option>
                                         @endforeach
                                     </select>
                                 </div>

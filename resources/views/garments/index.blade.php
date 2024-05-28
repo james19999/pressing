@@ -87,8 +87,8 @@
                                                         class="form-control col-12" id="" placeholder="libelle"
                                                         required>
                                                     <input type="number" name="price" value="{{ $garment->price }}"
-                                                        class="form-control col-12  mt-2" id="" placeholder="libelle"
-                                                        required>
+                                                        class="form-control col-12  mt-2" id=""
+                                                        placeholder="libelle" required>
 
                                             </div>
                                             <div class="modal-footer">
