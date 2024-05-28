@@ -73,29 +73,32 @@
 
                 </div>
             </div>
-            <table class="table">
-                <div class="bg-primary">
-                    <h3 class="text-primary">{{ $order->order_number }}</h3>
-                </div>
-                <thead>
-                    <tr>
-                        <th>Linges</th>
-                        <th>Quantité</th>
-                        <th>Prix</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($order->items as $item)
-                        <tr>
-                            <td>{{ $item->garment->name }}</td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>{{ $item->price }} XOF</td>
-                            <td>{{ $item->quantity * $item->price }} XOF</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+             <div class="table-responsive">
+
+                 <table class="table">
+                     <div class="bg-primary">
+                         <h3 class="text-primary">{{ $order->order_number }}</h3>
+                     </div>
+                     <thead>
+                         <tr>
+                             <th>Linges</th>
+                             <th>Quantité</th>
+                             <th>Prix</th>
+                             <th>Total</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         @foreach ($order->items as $item)
+                             <tr>
+                                 <td>{{ $item->garment->name }}</td>
+                                 <td>{{ $item->quantity }}</td>
+                                 <td>{{ $item->price }} XOF</td>
+                                 <td>{{ $item->quantity * $item->price }} XOF</td>
+                             </tr>
+                         @endforeach
+                     </tbody>
+                 </table>
+             </div>
             <div class="row">
                <div class="col-md-4">
                  <div class="card">
