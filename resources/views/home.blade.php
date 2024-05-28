@@ -4,8 +4,8 @@
 @section('content')
     <div class="page-header">
         <div>
-            <span class="h2">eCommerce</span>
-            <small>Be a best seller...</small>
+            <span class="h2">{{ Auth::user()->name }}</span>
+            {{--  <small>Bienvenue</small>  --}}
         </div>
     </div>
     <div class="row">

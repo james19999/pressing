@@ -96,7 +96,7 @@
                     </li>
 
 
-                    <li class="separator">
+                    {{--  <li class="separator">
                         <span>UI Elements & Components</span>
                     </li>
                     <li>
@@ -331,7 +331,7 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li>  --}}
                 </ul>
                 <div class="navigation-arrow right">
                     <i class="material-icons">chevron_right</i>

@@ -121,24 +121,29 @@
                                                 <form action="{{ route('pressings.update', $pressing) }}" method="POST">
                                                     @method('PUT')
                                                     @csrf
-                                                    <input type="text" name="name" value="{{ old('name',$pressing->name) }}"
+                                                    <input type="text" name="name"
+                                                        value="{{ old('name', $pressing->name) }}"
                                                         class="mb-3 form-control col-12" id="" placeholder="Nom"
                                                         required>
-                                                    <input type="text" name="phone" value="{{ old('phone',$pressing->phone) }}"
-                                                        class="mb-3 form-control col-12" id="" placeholder="Téléphone"
-                                                        required>
-                                                    <input type="text" name="address" value="{{ old('address',$pressing->address) }}"
-                                                        class="mb-3 form-control col-12" id="" placeholder="Adresse"
-                                                        required>
-                                                    <input type="email" name="email" value="{{ old('eamil',$pressing->email) }}"
-                                                        class="mb-3 form-control col-12" id="" placeholder="email"
-                                                        required>
+                                                    <input type="text" name="phone"
+                                                        value="{{ old('phone', $pressing->phone) }}"
+                                                        class="mb-3 form-control col-12" id=""
+                                                        placeholder="Téléphone" required>
+                                                    <input type="text" name="address"
+                                                        value="{{ old('address', $pressing->address) }}"
+                                                        class="mb-3 form-control col-12" id=""
+                                                        placeholder="Adresse" required>
+                                                    <input type="email" name="email"
+                                                        value="{{ old('eamil', $pressing->email) }}"
+                                                        class="mb-3 form-control col-12" id=""
+                                                        placeholder="email" required>
 
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
                                                     data-dismiss="modal">Fermer</button>
-                                                <button type="submit" class="btn btn-success text-white">Modifier</button>
+                                                <button type="submit"
+                                                    class="btn btn-success text-white">Modifier</button>
                                             </div>
                                             </form>
                                         </div>
