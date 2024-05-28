@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\GarmentController;
 use App\Http\Controllers\PrecingController;
 use App\Http\Controllers\CostumerController;
 use App\Http\Controllers\PersmissionController;
@@ -25,6 +26,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::resource('garments', GarmentController::class);
 
 Route::resource('pressings',PrecingController::class);
 Route::resource('orders',OrderController::class);

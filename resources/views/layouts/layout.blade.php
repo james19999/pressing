@@ -62,6 +62,12 @@
                             <span class="text">Commandes</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('garments.index') }}" class=" {{ request()->is('garments') ? 'active' : '' }}">
+                            <span class="icon material-icons">folder_open</span>
+                            <span class="text">Linges</span>
+                        </a>
+                    </li>
                     <li class="separator">
                         <span>Applications & Pages</span>
                     </li>
