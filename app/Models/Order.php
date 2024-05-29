@@ -21,7 +21,8 @@ class Order extends Model
      'total',
      'date_delivered',
      'order_number',
-     'raison'
+     'raison',
+      'user_id'
 
     ];
     protected $casts = [
@@ -39,5 +40,9 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class ,'user_id');
     }
 }

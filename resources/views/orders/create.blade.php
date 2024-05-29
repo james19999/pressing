@@ -160,26 +160,38 @@
                 <div class="card-footer">
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="discount">Ajouter une ligne de linge</label>
 
                             <button type="button" class="btn btn-primary" id="add-order-item">Ligne</button>
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="discount">Remise (%)</label>
                                 <input type="number" name="remis" id="discount" class="form-control"
                                     value="0">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="grand-total">Sous Total</label>
                                 <input type="number" name="total_remis" id="grand-total" class="form-control" readonly>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                            <div class="col-md-2">
+                            <div class="mt-3 form-group">
+                                <label for="express-price">Expersse-prix</label>
+                                <input type="number"  id="express-price" value="1"  min="1" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="mt-3 form-group">
+                                <label for="deduction">Déduction</label>
+                                <input type="number"  id="deduction" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="final-total"> Total </label>
                                 <input type="number" name="total" id="final-total" class="form-control" readonly>
@@ -274,7 +286,7 @@
                 calculateTotal(orderItem);
             });
 
-            $('#discount').on('input', function() {
+            $('#discount, #express-price, #deduction').on('input', function() {
                 updateGrandTotal();
             });
 
@@ -289,12 +301,16 @@
             function updateGrandTotal() {
                 var grandTotal = 0;
                 $('.total').each(function() {
-                    grandTotal += parseFloat($(this).val());
+                    grandTotal += parseFloat($(this).val()) || 0;
                 });
                 $('#grand-total').val(grandTotal.toFixed(2));
 
-                var discount = $('#discount').val();
-                var finalTotal = grandTotal - (grandTotal * (discount / 100));
+                var discount = parseFloat($('#discount').val()) || 0;
+                var expressPrice = parseFloat($('#express-price').val()) || 1;
+                var deduction = parseFloat($('#deduction').val()) || 0;
+
+                var discountedTotal = grandTotal - (grandTotal * (discount / 100));
+                var finalTotal = (discountedTotal * expressPrice) - deduction;
                 $('#final-total').val(finalTotal.toFixed(2));
             }
         });
@@ -310,8 +326,10 @@
                 var selectedValue = $('#order_type').val();
                 if (selectedValue === 'Simple') {
                     $('#date_expresse').prop('readonly', true);
+                    $('#express-price').prop('readonly', true);
                 } else {
                     $('#date_expresse').prop('readonly', false);
+                    $('#express-price').prop('readonly', false);
                 }
             }
 

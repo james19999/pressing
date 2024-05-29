@@ -104,7 +104,9 @@
                                         <div class="btn-group btn-group-justified">
 
                                             <a href="{{ route('orders.edit', $order) }}" style="color: white"
-                                                type="button" class="btn btn-warning" data-hover="tooltip">
+                                                type="button"
+                                                class="btn btn-warning  {{ $order->status == 'delivered' && $order->payment_method == 'Payer' ? 'disabled' : '' }}  "
+                                                data-hover="tooltip">
                                                 <i class="material-icons">edit</i>
                                                 Modifier</a>
                                             <a href="{{ route('orders.show', $order) }}" style="color: white"

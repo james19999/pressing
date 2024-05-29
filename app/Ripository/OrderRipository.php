@@ -2,17 +2,23 @@
 namespace App\Ripository;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Garment;
 use App\Models\OrderItem;
 use App\Traits\TraitDefault;
+use App\Mail\SendMailToLivreur;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class OrderRipository{
 
     use  TraitDefault;
     public function get_all_order(){
-        return Order::with('customer')->latest()->get();
+        return Order::where('status','pending')
+         ->
+        with('customer')->latest()
+        ->get();
     }
 
 
@@ -41,6 +47,8 @@ class OrderRipository{
          $order->remis =$data['remis'];
          $order->total_remis =$data['total_remis'];
          $order->total =$data['total'];
+         $order->date_delivered=$data['order_type']=='Expresse' ?  $data['date_expresse'] :$data['date_delivered'];
+
 
         $order->save();
 
@@ -86,6 +94,7 @@ class OrderRipository{
                 'price' => $data['prices'][$i],
             ]);
         }
+         $this->send_mail_to_livreur();
          toastr()->success('Commande effectuée');
         return redirect()->route('orders.index');
     }
@@ -139,5 +148,14 @@ class OrderRipository{
         $order->save();
         return back();
     }
+    }
+
+    public function send_mail_to_livreur(){
+
+        $users=User::role('Livreur')->get();
+        foreach ($users as $user){
+         Mail::to($user->email)->send(new SendMailToLivreur(env('APP_URL'),
+         'Commande disponible sur pressing Tenacos'));
+        }
     }
 }
