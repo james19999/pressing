@@ -99,7 +99,7 @@ class OrderRipository{
                 'price' => $data['prices'][$i],
             ]);
         }
-         $this->send_mail_to_livreur();
+        //  $this->send_mail_to_livreur();
          toastr()->success('Commande effectuée');
         return redirect()->route('orders.index');
     }
