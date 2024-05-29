@@ -6,7 +6,7 @@
         <div>
             <span class="h2">{{ Auth::user()->name }}
 
-                Bienvenue dans  {{ $Pressing->name ?? '' }} Pressing
+                Bienvenue dans  {{ $Pressing->name ?? '' }}
             </span>
         </div>
     </div>
