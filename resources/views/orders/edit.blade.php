@@ -221,6 +221,10 @@
 
                     <button type="submit" class="mt-3 btn btn-success btn-block ">Modifier</button>
                 </div>
+                <div class="col-md-6">
+
+                    <a href="{{ route('orders.index') }}" type="button" class="mt-4 btn btn-danger btn-block " style="color: white">Annuler</a>
+                </div>
             </div>
 
 
