@@ -1,5 +1,6 @@
 
 
+ADD EXPRICE PRICE =5000F
 coùùande_tag
 
 1. Nom et prénom, numéro, adresse

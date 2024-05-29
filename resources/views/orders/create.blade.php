@@ -182,13 +182,13 @@
                             <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="express-price">Expersse-prix</label>
-                                <input type="number"  id="express-price" value="1"  min="1" class="form-control" >
+                                <input type="number"  id="express-price" name="express_price" value="1"  min="1" class="form-control" >
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="deduction">Déduction</label>
-                                <input type="number"  id="deduction" class="form-control" >
+                                <input type="number"  id="deduction" name="reduction" class="form-control" >
                             </div>
                         </div>
                         <div class="col-md-2">

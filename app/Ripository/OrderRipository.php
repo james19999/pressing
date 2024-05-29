@@ -47,6 +47,9 @@ class OrderRipository{
          $order->remis =$data['remis'];
          $order->total_remis =$data['total_remis'];
          $order->total =$data['total'];
+         $order->reduction =$data['reduction'];
+         $order->express_price =$data['express_price'];
+
          $order->date_delivered=$data['order_type']=='Expresse' ?  $data['date_expresse'] :$data['date_delivered'];
 
 
@@ -82,6 +85,8 @@ class OrderRipository{
             'remis'=>$data['remis'],
             'total_remis'=>$data['total_remis'],
             'total'=>$data['total'],
+            'reduction'=>$data['reduction']??0,
+            'express_price'=>$data['express_price']?? 1,
             'date_delivered'=>$data['order_type']=='Expresse' ?  $data['date_expresse'] :$data['date_delivered'],
             'order_number'=>$this->code_generate(),
 

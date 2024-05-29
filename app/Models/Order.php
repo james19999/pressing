@@ -22,7 +22,10 @@ class Order extends Model
      'date_delivered',
      'order_number',
      'raison',
-      'user_id'
+      'user_id',
+      'take',
+      'express_price',
+      'reduction'
 
     ];
     protected $casts = [

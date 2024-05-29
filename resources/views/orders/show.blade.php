@@ -109,6 +109,12 @@
 
                           <p>Sous Total: {{ $order->items->sum(function ($item) {return $item->quantity * $item->price;}) }} XOF</p>
                           <p>Remis : {{ $order->remis }} %</p>
+                          @if ($order->express_price==1)
+                          <p>Commande simple </p>
+                          @else
+                          <p>Commande expresse  : {{ $order->total_remis * $order->express_price }} XOF</p>
+                          @endif
+                          <p>Réduction : {{ $order->reduction ?? '0' }} XOF</p>
                           <p>Total : {{ $order->total }} XOF</p>
                       </div>
                  </div>
