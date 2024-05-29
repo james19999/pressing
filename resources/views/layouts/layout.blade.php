@@ -435,7 +435,12 @@
                              </form>
                                 <div class="dropdown-divider"></div>
                                 <span class="dropdown-item-text">
-                                    Build Version: v1.0.1
+                                    @php
+                                        $Pressings=App\Models\Precing::all();
+                                    @endphp
+                                     @foreach ($Pressings as $Pressing )
+                                          <a href="{{ route('home',$Pressing) }}">{{ $Pressing->name }}</a>
+                                     @endforeach
                                 </span>
                             </div>
                         </li>

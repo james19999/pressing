@@ -34,7 +34,7 @@ Route::resource('orders',OrderController::class);
 Route::resource('costumers',CostumerController::class);
 Route::put('paid/order/valid/{id}',[OrderController::class,'paid_order_valid'])->name('paid-order-valid');
 Route::put('change/status/{id}',[OrderController::class,'change_status_order'])->name('change-status-order');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/{id?}', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('users', UserController::class);
 

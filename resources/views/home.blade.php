@@ -4,8 +4,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <span class="h2">{{ Auth::user()->name }}</span>
-            {{--  <small>Bienvenue</small>  --}}
+            <span class="h2">{{ Auth::user()->name }}
+
+                Bienvenue dans  {{ $Pressing->name ?? '' }} Pressing
+            </span>
         </div>
     </div>
     <div class="row">
@@ -14,8 +16,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Average Sales</h5><span
-                                class="h1 font-weight-bold mb-0">50,897</span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Total </h5><span
+                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $ordersums }} XOF</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -27,12 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mt-3 mb-0 text-sm">
 
-                        <span class="text-nowrap">this month</span>
-                        <span class="text-success float-right ml-2"> <i class="fa fa-arrow-up"></i>
-                            8%</span>
-                    </p>
                 </div>
             </div>
         </div>
@@ -41,8 +38,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Total Sales</h5><span
-                                class="h1 font-weight-bold mb-0">550,897</span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Total des commandes</h5><span
+                               style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordercount }}   </span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -53,13 +50,6 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mt-3 mb-0 text-sm">
-
-                        <span class="text-nowrap ">since last month</span>
-                        <span class="text-success float-right ml-2">
-                            <i class="fa fa-arrow-up"></i>
-                            3.48%</span>
-                    </p>
                 </div>
             </div>
         </div>
@@ -68,8 +58,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">INQUIRIES</h5><span
-                                class="h1 font-weight-bold mb-0">750,897</span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Commandes en cours</h5><span
+                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $ordercountpeding }}</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -79,11 +69,6 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mt-3 mb-0 text-sm">
-                        <span class="text-nowrap">since last month</span>
-                        <span class="text-danger float-right ml-2"> <i class="fa fa-arrow-down"></i>
-                            3.48%</span>
-                    </p>
                 </div>
             </div>
         </div>
@@ -92,8 +77,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Invoices</h5><span
-                                class="h1 font-weight-bold mb-0">897</span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Commandes livrées</h5><span
+                             style="font-size: 130%"   class="h1 font-weight-bold mb-0">{{ $ordecountdeliverd }}</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -104,11 +89,6 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mt-3 mb-0 text-sm">
-                        <span class="text-nowrap">since last month</span>
-                        <span class="text-danger float-right ml-2"> <i class="fa fa-arrow-down"></i>
-                            3.48%</span>
-                    </p>
                 </div>
             </div>
         </div>
@@ -436,204 +416,173 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Online Transaction</h4>
+            <div class="shadow card">
+                <div class="card-body ">
+                    @if (Session::has('success'))
+                        <div class="alert alert-success">
+                            <strong>{{ session('success') }}</strong>
+                        </div>
+                    @endif
                     <div class="table-responsive">
-                        <table class="table table-borderless table-centered table-nowrap mb-0">
-                            <thead class="thead-light rounded">
+                        <table id="example" class="table table-hover w-100">
+                            <thead class="thead-light">
                                 <tr>
-                                    <th style="width: 20px;">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">&nbsp;</label>
-                                        </div>
-                                    </th>
-                                    <th>Order ID</th>
-                                    <th>Buyer Name</th>
-                                    <th>Order Date</th>
-                                    <th>Total</th>
-                                    <th>Payment Status</th>
-                                    <th>Shipping Status</th>
-                                    <th>Details</th>
+                                    <th style="width: 20%">N°</th>
+                                    <th style="width: 20%">Numéro commande</th>
+                                    <th style="width: 20%">Client</th>
+                                    <th style="width: 20%">Type de lavage</th>
+                                    <th style="width: 20%">Type de commande</th>
+                                    <th style="width: 20%">Status de commande</th>
+                                    <th style="width: 20%">Sous total</th>
+                                    <th style="width: 20%">Remise %</th>
+                                    <th style="width: 20%">Total </th>
+                                    <th style="width: 20%">Date Réception </th>
+                                    <th style="width: 20%">Date Livraison </th>
+                                    <th style="width: 20%">Actions</th>
                                 </tr>
+
+
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body font-weight-bold">#FO225510</a>
-                                    </td>
-                                    <td>Harsh Pete</td>
-                                    <td>
-                                        10 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $40
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-transparent-danger p-2">Chargeback</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-primary">Shipped</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="material-icons f-16">visibility</i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                @php
+                                    $i = 1;
+                                @endphp
+                                @foreach ($orders as $order)
+                                    <tr>
 
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label" for="customCheck3">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body font-weight-bold">#FO225511</a>
-                                    </td>
-                                    <td>Meet Cook</td>
-                                    <td>
-                                        11 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $38
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-transparent-success p-2">Paid</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning"> Pending</span>
-                                    </td>
-                                    <td>
+                                        <td style="color: black ">{{ $i++ }}</td>
+                                        <td style="color: black ">{{ $order->order_number }}</td>
+                                        <td style="color: black ">{{ $order->customer->name }} | {{ $order->customer->phone }} |
+                                            {{ $order->customer->address ?? '' }}</td>
+                                        <td style="color: black ">
+                                            @if (!is_null($order->type_lavage))
+                                                @foreach ($order->type_lavage as $key => $value)
+                                                    <span class="badge badge-info">
 
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="material-icons f-16">visibility</i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                                        {{ $value }},
 
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                            <label class="custom-control-label" for="customCheck4">&nbsp;</label>
+                                                    </span>
+                                                @endforeach
+                                            @else
+                                                <p>No preferences found.</p>
+                                            @endif
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->order_type }}
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->payment_method }} |
+                                            @if ($order->status == 'pending')
+                                                <span class="badge badge-warning  text-white">En cours</span>
+                                            @elseif ($order->status == 'delivered')
+                                                <span class="badge badge-success text-white">Livré</span>
+                                            @elseif ($order->status == 'canceled')
+                                                <span class="badge badge-danger">Annulé</span>
+                                            @endif
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->total_remis }} XOF
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->remis }} %
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->total }} XOF
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->date_recived }}
+
+                                        </td>
+                                        <td style="color: black ">
+                                            {{ $order->date_delivered }}
+                                            {{--  <div>
+                                                <p>f</p>
+                                            </div>  --}}
+
+                                        </td>
+
+
+                                        <td style="color: black " class=" pull-right">
+
+                                            <div class="btn-group btn-group-justified">
+
+                                                <a href="{{ route('orders.edit', $order) }}" style="color: white"
+                                                    type="button"
+                                                    class="btn btn-warning  {{ $order->status == 'delivered' && $order->payment_method == 'Payer' ? 'disabled' : '' }}  "
+                                                    data-hover="tooltip">
+                                                    <i class="material-icons">edit</i>
+                                                    Modifier</a>
+                                                <a href="{{ route('orders.show', $order) }}" style="color: white"
+                                                    type="button" class="btn btn-info" data-hover="tooltip">
+                                                    <i class="material-icons">remove_red_eye</i>
+                                                    Détails</a>
+
+                                                <a href="{{ route('orders.destroy', $order) }}" style="color: white"
+                                                    type="button" class="btn btn-danger" data-hover="tooltip"
+                                                    data-placement="top"
+                                                    data-target="#modal-destroy-customers{{ $order->id }}"
+                                                    data-toggle="modal" id="modal-destroy">
+                                                    <i class="material-icons">delete</i>
+                                                    Supprimer</a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <div class="modal fade" id="modal-destroy-customers{{ $order->id }}" tabindex="-1"
+                                        aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="defaultModalLabel">Suppréssion en cours </h4>
+                                                    <button type="button" class="btn btn-light btn-circle dismiss"
+                                                        data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true" class="material-icons">close</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h2 style="text-align: center"> Voulez-vous vraiment supprimer ?
+                                                    </h2>
+                                                    <form action="{{ route('orders.destroy', $order) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-dismiss="modal">Non</button>
+                                                    <button type="submit" class="btn btn-primary">Oui</button>
+                                                </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body font-weight-bold">#FO225512</a>
-                                    </td>
-                                    <td>Jam Mitche</td>
-                                    <td>
-                                        12 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $38
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-transparent-warning p-2">Pending</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success"> Delivered</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="material-icons f-16">visibility</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                            <label class="custom-control-label" for="customCheck5">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body font-weight-bold">#FO225513</a>
-                                    </td>
-                                    <td>Brain Dick</td>
-                                    <td>
-                                        13 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $41
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-transparent-danger p-2">Return</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-danger">Returned</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="material-icons f-16">visibility</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck6">
-                                            <label class="custom-control-label" for="customCheck6">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body font-weight-bold">#FO225514</a>
-                                    </td>
-                                    <td>Ronaldo teen</td>
-                                    <td>
-                                        14 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $40
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-transparent-success p-2">Return</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-info">Shipped</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="material-icons f-16">visibility</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck7">
-                                            <label class="custom-control-label" for="customCheck7">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body font-weight-bold">#FO225515</a>
-                                    </td>
-                                    <td>Jac Brusli</td>
-                                    <td>
-                                        15 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $392
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-transparent-dark p-2">Cancelled</span>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">Delivered</span>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary btn-sm">
-                                            <i class="material-icons f-16">visibility</i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                    </div>
+                                @endforeach
+
                             </tbody>
+                            <tfoot class="thead-light">
+                                <tr>
+                                    <th style="width: 20%">N°</th>
+                                    <th style="width: 20%">Numéro commande</th>
+                                    <th style="width: 20%">Client</th>
+                                    <th style="width: 20%">Type de lavage</th>
+                                    <th style="width: 20%">Type de commande</th>
+                                    <th style="width: 20%">Status de commande</th>
+                                    <th style="width: 20%">Sous total</th>
+                                    <th style="width: 20%">Remise </th>
+                                    <th style="width: 20%">Total </th>
+                                    <th style="width: 20%">Date Réception </th>
+                                    <th style="width: 20%">Date Livraison </th>
+                                    <th style="width: 20%">Actions</th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
-                    <!-- end table-responsive -->
                 </div>
             </div>
         </div>
