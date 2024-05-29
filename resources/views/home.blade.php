@@ -92,6 +92,90 @@
                 </div>
             </div>
         </div>
+        {{--  <h1>---------------------------------------------</h1>  --}}
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="text-uppercase text-muted mb-0 card-title">CHIFFRE D'AFFAIRE ANNUEL </h5><span
+                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $totalyear }} XOF</span>
+                        </div>
+                        <div class="col-auto col">
+                            <div>
+                                <button class="btn btn-transparent-primary btn-lg btn-circle">
+
+                                    <i class="material-icons">monetization_on</i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="text-uppercase text-muted mb-0 card-title">CHIFFRE D'AFFAIRE HEBDOMADAIRE</h5><span
+                               style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $totalofweak }} XOF  </span>
+                        </div>
+                        <div class="col-auto col">
+                            <div>
+                                <button class="btn btn-transparent-primary btn-lg btn-circle">
+
+                                    <i class="material-icons">trending_up</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Journalière</h5><span
+                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $totalday }} XOF</span>
+                        </div>
+                        <div class="col-auto col">
+                            <div>
+                                <button class="btn btn-transparent-primary btn-lg btn-circle">
+                                    <i class="material-icons">language</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Mensuel</h5><span
+                             style="font-size: 130%"   class="h1 font-weight-bold mb-0">{{ $totalmonth }} XOF</span>
+                        </div>
+                        <div class="col-auto col">
+                            <div>
+                                <button class="btn btn-transparent-primary btn-lg btn-circle">
+                                    <i class="material-icons">receipt</i>
+
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="card shadow">
                 <div class="card-body">

@@ -28,25 +28,40 @@ class HomeController extends Controller
     {
          if($id){
 
-             $Pressing =Precing::findOrFail($id);
-             $orders=$this->homeRipository->get_order_by_pressing($id);
+            $Pressing =Precing::findOrFail($id);
+            $orders=$this->homeRipository->get_order_by_pressing($id);
             $ordersums=$this->homeRipository->get_all_order_sum_delivered_by_pressing($id);
             $ordercount=$this->homeRipository->get_all_order_count_by_pressing($id);
             $ordercountpeding=$this->homeRipository->get_all_order_count_pending_by_pressing($id);
             $ordecountdeliverd=$this->homeRipository->get_all_order_count_delivered_by_pressing($id);
 
+            $totalyear=$this->homeRipository->get_total_order_of_year_by_pressing($id);
+            $totalofweak=$this->homeRipository->get_total_order_week_by_pressing($id);
+            $totalday=$this->homeRipository->get_total_order_today_by_pressing($id);
+            $totalmonth=$this->homeRipository->get_total_of_month_by_pressing($id);
 
 
-
-
-             return view('home' ,compact('Pressing','orders','ordersums','ordercountpeding','ordecountdeliverd','ordercount'));
+             return view('home' ,compact('Pressing','orders','ordersums',
+             'ordercountpeding','ordecountdeliverd'
+             ,'ordercount','totalyear','totalofweak','totalday',
+            'totalmonth'));
          }else{
             $orders=$this->homeRipository->get_order_pressings();
             $ordersums=$this->homeRipository->get_all_order_sum_delivered();
             $ordercount=$this->homeRipository->get_all_order_count();
             $ordercountpeding=$this->homeRipository->get_all_order_count_pending();
             $ordecountdeliverd=$this->homeRipository->get_all_order_count_delivered();
-            return view('home',compact('orders' ,'ordersums','ordercountpeding','ordecountdeliverd','ordercount'));
+
+            $totalyear=$this->homeRipository->get_total_order_of_year();
+            $totalofweak=$this->homeRipository->get_total_order_week();
+            $totalday=$this->homeRipository->get_total_order_today();
+            $totalmonth=$this->homeRipository->get_total_of_month();
+
+            return view('home',compact('orders' ,'ordersums',
+            'ordercountpeding','ordecountdeliverd',
+            'ordercount','totalyear','totalofweak','totalday'
+            ,'totalmonth'
+        ));
          }
     }
 }

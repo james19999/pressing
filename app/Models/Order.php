@@ -48,4 +48,10 @@ class Order extends Model
     public function user(){
         return $this->belongsTo(User::class ,'user_id');
     }
+
+    public function scopeCurrentMonth($query)
+    {
+        return $query->whereYear('created_at', now()->year)
+                     ->whereMonth('created_at', now()->month);
+    }
 }
