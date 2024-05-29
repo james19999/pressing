@@ -6,7 +6,7 @@ use App\Models\Garment;
 class GarmentRipository {
 
     public function get_all_Garment(){
-        return Garment::latest()->get();
+        return Garment::all()->sortBy('name');
     }
 
      public function get_garment($id){
