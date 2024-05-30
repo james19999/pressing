@@ -4,7 +4,7 @@
 @section('content')
     <div class="page-header">
         <div>
-            <span class="h2">{{ Auth::user()->name }}
+            <span class="h2">{{ Auth::user()->name ?? '' }}
 
                 Bienvenue dans  {{ $Pressing->name ?? '' }}
             </span>
@@ -16,8 +16,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Total </h5><span
-                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $ordersums }} XOF</span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Total commandes en couurs   </h5><span
+                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $get_all_pending_count }} </span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Total des commandes</h5><span
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Total des commandes /J</h5><span
                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordercount }}   </span>
                         </div>
                         <div class="col-auto col">
@@ -58,7 +58,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Commandes en cours</h5><span
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Commandes en cours /J</h5><span
                               style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $ordercountpeding }}</span>
                         </div>
                         <div class="col-auto col">
@@ -77,7 +77,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Commandes livrées</h5><span
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Commandes livrées /J</h5><span
                              style="font-size: 130%"   class="h1 font-weight-bold mb-0">{{ $ordecountdeliverd }}</span>
                         </div>
                         <div class="col-auto col">
