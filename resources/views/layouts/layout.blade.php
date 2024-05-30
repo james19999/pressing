@@ -18,12 +18,12 @@
     ">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    {{--  <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">  --}}
+    <link rel="stylesheet" href="{{ asset('cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css') }}">
 
 
 
 
-    {{--  <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/apexcharts/3.23.1/apexcharts.min.css">  --}}
+    <link rel="stylesheet" href="{{ asset('cdnjs.cloudflare.com/ajax/libs/apexcharts/3.23.1/apexcharts.min.css') }}">
 
 
     @livewireStyles

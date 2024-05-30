@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Precing;
+use App\Traits\TraitDefault;
 use Illuminate\Http\Request;
 use App\Ripository\HomeRipository;
 
 class HomeController extends Controller
 {
+    use  TraitDefault;
+
     /**
      * Create a new controller instance.
      *
@@ -42,11 +45,17 @@ class HomeController extends Controller
             $totalday=$this->homeRipository->get_total_order_today_by_pressing($id);
             $totalmonth=$this->homeRipository->get_total_of_month_by_pressing($id);
 
+            $chart1=$this->chart_on_by_pressing($id);
+            $chart2=$this->chart_two();
+            $chart3=$this->chart_three_by_pressing($id);
+            $chart4=$this->chart_four_by_pressing($id);
 
              return view('home' ,compact('Pressing','orders','ordersums','get_all_pending_count',
              'ordercountpeding','ordecountdeliverd'
              ,'ordercount','totalyear','totalofweak','totalday',
-            'totalmonth'));
+            'totalmonth',
+            'chart1','chart2','chart3','chart4',
+        ));
          }else{
             $orders=$this->homeRipository->get_order_pressings();
             $ordersums=$this->homeRipository->get_all_order_sum_delivered();
@@ -59,11 +68,17 @@ class HomeController extends Controller
             $totalday=$this->homeRipository->get_total_order_today();
             $totalmonth=$this->homeRipository->get_total_of_month();
 
+            $chart1=$this->chart_on();
+            $chart2=$this->chart_two();
+            $chart3=$this->chart_three();
+            $chart4=$this->chart_four();
 
             return view('home',compact('orders' ,'ordersums',
             'ordercountpeding','ordecountdeliverd',
             'ordercount','totalyear','totalofweak','totalday'
-            ,'totalmonth','get_all_pending_count'
+            ,'totalmonth','get_all_pending_count',
+            'chart1','chart2','chart3','chart4',
+
         ));
          }
     }
