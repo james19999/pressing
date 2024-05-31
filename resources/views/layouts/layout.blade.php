@@ -36,7 +36,7 @@
         <aside class="sidebar">
             <nav class="navbar">
                 <a class="navbar-brand brand-title" href="#">
-                    <img src="assets/images/light.png" alt="" class="logo"> Moss
+                    <img src="assets/images/logo-square.png" alt="" class="logo"> TENACE PRESSING
                 </a>
             </nav>
             <nav class="shadow-sm navigation">

@@ -25,7 +25,7 @@
         <div class="main-content container-fluid h-100 bg-primary">
             <div class="row h-100">
                 <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto px-3 pt-5 pb-4 card shadow m-3">
-                    <img src="assets/images/dark.png" height="50" alt="Moss Logo" class="logo justify-content-center d-flex mx-auto mb-3">
+                    <img src="assets/images/logo-square.png" height="50" alt="Moss Logo" class="logo justify-content-center d-flex mx-auto mb-3">
                     <form    method="POST" action="{{ route('login') }}" class="p-3" >
                         @csrf
                        <div class="form-group">
