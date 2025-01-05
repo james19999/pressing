@@ -86,6 +86,8 @@ class OrderRipository{
             'total_remis'=>$data['total_remis'],
             'total'=>$data['total'],
             'reduction'=>$data['reduction']??0,
+            'advance'=>$data['advance'],
+            'reste'=>$data['reste'],
             'express_price'=>$data['express_price']?? 1,
             'date_delivered'=>$data['order_type']=='Expresse' ?  $data['date_expresse'] :$data['date_delivered'],
             'order_number'=>$this->code_generate(),
@@ -114,18 +116,46 @@ class OrderRipository{
     }
 
 
-    public function  paid_order(array $data, $id){
-       $order=$this->get_order($id);
-       if($order){
+    // public function  paid_order(array $data, $id){
+    //    $order=$this->get_order($id);
+    //    if($order){
+    //         $order->payment_method = $data['payment_method'];
+    //         $order->save();
+    //         toastr()->success("Commande " ,$data['payment_method']);
+    //         return back();
+    //    }else{
+    //     toastr()->error('Commande non trouvé');
+    //     return back();
+    //    }
+    // }
+    public function paid_order(array $data, $id)
+{
+    // Récupérer la commande
+    $order = $this->get_order($id);
+
+    if ($order) {
+        // Vérifier si le montant restant est égal à zéro
+        if ($order->reste == 0) {
+            // Valider le paiement
             $order->payment_method = $data['payment_method'];
+            $order->status="delivered";
+            $order->date_delivered=Carbon::now();
             $order->save();
-            toastr()->success("Commande " ,$data['payment_method']);
-            return back();
-       }else{
-        toastr()->error('Commande non trouvé');
+
+            toastr()->success("Paiement validé avec la méthode : " . $data['payment_method']);
+        } else {
+            // Afficher une erreur si un montant reste à payer
+            toastr()->error('Le montant restant est de ' . $order->reste . 'XOF'. '. Veuillez payer le reste avant de valider le paiement.');
+        }
+
         return back();
-       }
+    } else {
+        // Afficher une erreur si la commande est introuvable
+        toastr()->error('Commande non trouvée');
+        return back();
     }
+}
+
 
     public function  changer_status_order(array $data,$id){
         $order=$this->get_order($id);
@@ -161,6 +191,23 @@ class OrderRipository{
         foreach ($users as $user){
          Mail::to($user->email)->send(new SendMailToLivreur(env('APP_URL'),
          'Commande disponible sur pressing Tenacos'));
+        }
+    }
+
+    public function get_all_order_delivered_mounth(){
+
+       return Order::where('status', 'delivered')
+        ->whereMonth('created_at', now()->month)
+        ->whereYear('created_at', now()->year)
+        ->get();
+    }
+
+    public function pay_reste($id){
+        $order = $this->get_order($id);
+        if($order){
+            $order->reste-=$order->reste;
+            $order->save();
+            return back();
         }
     }
 }

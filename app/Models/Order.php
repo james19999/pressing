@@ -25,7 +25,9 @@ class Order extends Model
       'user_id',
       'take',
       'express_price',
-      'reduction'
+      'reduction',
+      'advance',
+      'reste',
 
     ];
     protected $casts = [

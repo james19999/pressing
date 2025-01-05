@@ -28,8 +28,7 @@
                                 <th style="width: 20%">Remise %</th>
                                 <th style="width: 20%">Total </th>
                                 <th style="width: 20%">Avance </th>
-                                <th style="width: 20%">Reste </th>
-
+                                <th style="width: 20%">Reste à payer </th>
                                 <th style="width: 20%">Date Réception </th>
                                 <th style="width: 20%">Date Livraison </th>
                                 <th style="width: 20%">Actions</th>
@@ -90,13 +89,11 @@
 
                                     </td>
                                     <td style="color: black ">
-                                        {{ $order->advance ?? '' }} XOF
+                                        {{ $order->advance }} XOF
 
                                     </td>
                                     <td style="color: black ">
-                                        <a href="{{ route('pay-reste-pay', $order) }}">
-                                            {{ $order->reste ?? '' }} XOF
-                                        </a>
+                                        {{ $order->reste }} XOF
 
                                     </td>
                                     <td style="color: black ">
@@ -181,7 +178,7 @@
                                 <th style="width: 20%">Remise </th>
                                 <th style="width: 20%">Total </th>
                                 <th style="width: 20%">Avance </th>
-                                <th style="width: 20%">Reste </th>
+                                <th style="width: 20%">Reste à payer </th>
                                 <th style="width: 20%">Date Réception </th>
                                 <th style="width: 20%">Date Livraison </th>
                                 <th style="width: 20%">Actions</th>

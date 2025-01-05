@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             @include('partials.navs-links')
-            <button type="button" class="btn btn-primary active ml-2" data-toggle="modal"
+            <button type="button" class="ml-2 btn btn-primary active" data-toggle="modal"
                 data-target="#verticalCenteredModalDemo">
                 Nouveau client
             </button>
@@ -33,7 +33,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="customer_id">Client</label>
-                            <select name="customer_id" id="customer_id" class="form-control js-example-basic-single">
+                            <select required name="customer_id" id="customer_id"
+                                class="form-control js-example-basic-single">
                                 @foreach ($customers as $customer)
                                     <option value="{{ $customer->id }}">{{ $customer->name }} | {{ $customer->phone }}
                                     </option>
@@ -57,12 +58,12 @@
                     </div>  --}}
                     <div class="col-md-3">
                         <label for="">Date de réception</label>
-                        <input type="date" name="date_recived" value="{{ old('date_recived') }}" class="form-control"
-                            placeholder="Date">
+                        <input required type="date" name="date_recived" value="{{ old('date_recived') }}"
+                            class="form-control" placeholder="Date">
                     </div>
                     <div class="col-md-3">
                         <label for="">Sélectionnez le pressing</label>
-                        <select name="pressing_id" id="" class="form-control">
+                        <select required name="pressing_id" id="" class="form-control">
                             <option value="">----------</option>
                             @foreach ($pressings as $pressing)
                                 <option value="{{ $pressing->id }}">{{ $pressing->name }}</option>
@@ -81,7 +82,7 @@
                     <div class="col-md-3">
                         <label for="">Type de lavage</label>
 
-                        <select id="" class="form-control js-example-basic-multiple" name="type_lavage[]"
+                        <select required id="" class="form-control js-example-basic-multiple" name="type_lavage[]"
                             multiple="multiple">
 
                             <option value="Lavage avec teinture">Lavage avec teinture</option>
@@ -92,7 +93,7 @@
                     <div class="col-md-3">
                         <label for="">Status</label>
 
-                        <select name="payment_method" id="" class="form-control ">
+                        <select required name="payment_method" id="" class="form-control ">
 
                             <option value="Impayer">Impayer</option>
                             <option value="Payer">Payer</option>
@@ -101,7 +102,7 @@
                     <div class="col-md-3">
                         <label for="">Date de livraison {{ $hoursDifference }} heures </label>
 
-                        <input type="text" name="date_delivered" class="form-control" readonly
+                        <input required type="text" name="date_delivered" class="form-control" readonly
                             value="{{ old('date_delivered', $threeDaysLater) }}" placeholder="Date">
                     </div>
                 </div>
@@ -122,7 +123,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="garment_id">Linge</label>
-                                    <select name="garments[]" class="form-control garment-select ">
+                                    <select required name="garments[]" class="form-control garment-select ">
                                         <option value="">Choisir un vêtement</option>
                                         @foreach ($garments as $garment)
                                             <option value="{{ $garment->id }}" data-price="{{ $garment->price }}">
@@ -132,15 +133,16 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="quantity">Quantité</label>
-                                    <input type="number" name="quantities[]" class="form-control quantity" min="1">
+                                    <input required type="number" name="quantities[]" class="form-control quantity"
+                                        min="1">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="price">Prix</label>
-                                    <input type="number" name="prices[]" class="form-control price" readonly>
+                                    <input required type="number" name="prices[]" class="form-control price" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="total">Total</label>
-                                    <input type="number" name="totals[]" class="form-control total" readonly>
+                                    <input required type="number" name="totals[]" class="form-control total" readonly>
                                 </div>
 
                                 <div class=" col-md-2">
@@ -169,32 +171,48 @@
                         <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="discount">Remise (%)</label>
-                                <input type="number" name="remis" id="discount" class="form-control"
+                                <input required type="number" name="remis" id="discount" class="form-control"
                                     value="0">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="grand-total">Sous Total</label>
-                                <input type="number" name="total_remis" id="grand-total" class="form-control" readonly>
+                                <input required type="number" name="total_remis" id="grand-total" class="form-control"
+                                    readonly>
                             </div>
                         </div>
-                            <div class="col-md-2">
+                        <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="express-price">Expersse-prix</label>
-                                <input type="number"  id="express-price" name="express_price" value="1"  min="1" class="form-control" >
+                                <input required type="number" id="express-price" name="express_price" value="1"
+                                    min="1" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="deduction">Déduction</label>
-                                <input type="number"  id="deduction" name="reduction" class="form-control" >
+                                <input required type="number" id="deduction" name="reduction" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="mt-3 form-group">
                                 <label for="final-total"> Total </label>
-                                <input type="number" name="total" id="final-total" class="form-control" readonly>
+                                <input required type="number" name="total" id="final-total" class="form-control"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mt-3 form-group">
+                                <label for="final-avance">Avance </label>
+                                <input required type="number" name="advance" id="final-avance" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mt-3 form-group">
+                                <label for="final-rest"> Reste </label>
+                                <input required type="number" name="reste" id="final-rest" class="form-control"
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -207,7 +225,8 @@
                 </div>
                 <div class="col-md-6">
 
-                    <a href="{{ route('orders.index') }}" type="button" class="mt-4 btn btn-danger btn-block " style="color: white">Annuler</a>
+                    <a href="{{ route('orders.index') }}" type="button" class="mt-4 btn btn-danger btn-block "
+                        style="color: white">Annuler</a>
                 </div>
             </div>
     </div>
@@ -253,7 +272,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-success text-white">Valider</button>
+                    <button type="submit" class="text-white btn btn-success">Valider</button>
                 </div>
             </div>
             </form>
@@ -290,7 +309,7 @@
                 calculateTotal(orderItem);
             });
 
-            $('#discount, #express-price, #deduction').on('input', function() {
+            $('#discount, #express-price, #deduction ,#final-avance').on('input', function() {
                 updateGrandTotal();
             });
 
@@ -315,7 +334,11 @@
 
                 var discountedTotal = grandTotal - (grandTotal * (discount / 100));
                 var finalTotal = (discountedTotal * expressPrice) - deduction;
+                var finalavance = parseFloat($('#final-avance').val()) || finalTotal;
+
+                var RestTotal = finalTotal - finalavance;
                 $('#final-total').val(finalTotal.toFixed(2));
+                $('#final-rest').val(RestTotal.toFixed(2));
             }
         });
 
@@ -324,7 +347,7 @@
         });
 
 
-        $(document).ready(function(){
+        $(document).ready(function() {
             // Fonction pour mettre à jour l'état du champ date_expresse
             function updateDateExpresseState() {
                 var selectedValue = $('#order_type').val();
@@ -341,7 +364,7 @@
             updateDateExpresseState();
 
             // Mettre à jour l'état lorsque la sélection change
-            $('#order_type').change(function(){
+            $('#order_type').change(function() {
                 updateDateExpresseState();
             });
         });

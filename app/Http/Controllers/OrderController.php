@@ -97,5 +97,13 @@ class OrderController extends Controller
     public function change_status_order(Request $request ,$id){
       return $this->orderRipository->changer_status_order($request->all(),$id);
     }
+    public function order_delivered_month(){
+      $orders= $this->orderRipository->get_all_order_delivered_mounth();
+      return view('orders.order_delivred', compact('orders'));
+    }
+
+    public function pay_reste_pay($id){
+        return $this->orderRipository->pay_reste($id);
+    }
 
 }
