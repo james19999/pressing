@@ -32,6 +32,7 @@ class HomeController extends Controller
          if($id){
 
             $Pressing =Precing::findOrFail($id);
+            $ordersimpayer=$this->homeRipository->get_all_order_sum_payment_method_by_id($id);
             $orders=$this->homeRipository->get_order_by_pressing($id);
             $ordersums=$this->homeRipository->get_all_order_sum_delivered_by_pressing($id);
             $ordercount=$this->homeRipository->get_all_order_count_by_pressing($id);
@@ -55,9 +56,11 @@ class HomeController extends Controller
              ,'ordercount','totalyear','totalofweak','totalday',
             'totalmonth',
             'chart1','chart2','chart3','chart4',
+            'ordersimpayer'
         ));
          }else{
             $orders=$this->homeRipository->get_order_pressings();
+            $ordersimpayer=$this->homeRipository->get_all_order_sum_payment_method();
             $ordersums=$this->homeRipository->get_all_order_sum_delivered();
             $ordercount=$this->homeRipository->get_all_order_count();
             $ordercountpeding=$this->homeRipository->get_all_order_count_pending();
@@ -78,6 +81,7 @@ class HomeController extends Controller
             'ordercount','totalyear','totalofweak','totalday'
             ,'totalmonth','get_all_pending_count',
             'chart1','chart2','chart3','chart4',
+            'ordersimpayer'
 
         ));
          }

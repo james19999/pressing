@@ -47,6 +47,14 @@ class HomeRipository{
     public function get_all_order_sum_delivered(){
         return  $orders=Order::where('status','delivered')->sum('total');
     }
+    public function get_all_order_sum_payment_method(){
+        return  $orders=Order::where('payment_method','Impayer')->sum('total');
+    }
+    public function get_all_order_sum_payment_method_by_id($id){
+        return  $orders=Order::where('payment_method','Impayer')
+        ->where('pressing_id',$id)
+        ->sum('total');
+    }
     public function get_all_order_sum_delivered_by_pressing($id){
         return  $orders=Order::where('status','delivered')->
         where('pressing_id',$id)

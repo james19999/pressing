@@ -6,7 +6,7 @@
         <div>
             <span class="h2">{{ Auth::user()->name ?? '' }}/
 
-                 {{ $Pressing->name ?? '' }}
+                {{ $Pressing->name ?? '' }}
             </span>
         </div>
     </div>
@@ -16,8 +16,8 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Total commandes en couurs   </h5><span
-                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $get_all_pending_count }} </span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Total commandes en couurs </h5><span
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $get_all_pending_count }} </span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="text-uppercase text-muted mb-0 card-title">Total des commandes /J</h5><span
-                               style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordercount }}   </span>
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordercount }} </span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="text-uppercase text-muted mb-0 card-title">Commandes en cours /J</h5><span
-                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $ordercountpeding }}</span>
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordercountpeding }}</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="text-uppercase text-muted mb-0 card-title">Commandes livrées /J</h5><span
-                             style="font-size: 130%"   class="h1 font-weight-bold mb-0">{{ $ordecountdeliverd }}</span>
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordecountdeliverd }}</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="text-uppercase text-muted mb-0 card-title">CHIFFRE D'AFFAIRE ANNUEL </h5><span
-                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $totalyear }} XOF</span>
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $totalyear }} XOF</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -121,7 +121,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="text-uppercase text-muted mb-0 card-title">CHIFFRE D'AFFAIRE HEBDOMADAIRE</h5><span
-                               style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $totalofweak }} XOF  </span>
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $totalofweak }} XOF </span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -141,7 +141,7 @@
                     <div class="row">
                         <div class="col">
                             <h5 class="text-uppercase text-muted mb-0 card-title">Journalière</h5><span
-                              style="font-size: 130%"  class="h1 font-weight-bold mb-0">{{ $totalday }} XOF</span>
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $totalday }} XOF</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -159,8 +159,28 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h5 class="text-uppercase text-muted mb-0 card-title">Mensuel</h5><span
-                             style="font-size: 130%"   class="h1 font-weight-bold mb-0">{{ $totalmonth }} XOF</span>
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Mensuel</h5><span style="font-size: 130%"
+                                class="h1 font-weight-bold mb-0">{{ $totalmonth }} XOF</span>
+                        </div>
+                        <div class="col-auto col">
+                            <div>
+                                <button class="btn btn-transparent-primary btn-lg btn-circle">
+                                    <i class="material-icons">receipt</i>
+
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-12 col-lg-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5 class="text-uppercase text-muted mb-0 card-title">Total impayé</h5><span
+                                style="font-size: 130%" class="h1 font-weight-bold mb-0">{{ $ordersimpayer }} XOF</span>
                         </div>
                         <div class="col-auto col">
                             <div>
@@ -183,7 +203,7 @@
                     <h3 class="card-title mb-4 float-sm-left">{{ $chart1->options['chart_title'] }}</h3>
 
 
-                    <div >
+                    <div>
                         {!! $chart1->renderHtml() !!}
                     </div>
                 </div>
@@ -195,7 +215,7 @@
                     <h3 class="card-title mb-4">{{ $chart2->options['chart_title'] }}</h3>
 
 
-                        {!! $chart2->renderHtml() !!}
+                    {!! $chart2->renderHtml() !!}
 
                 </div>
             </div>
@@ -255,7 +275,8 @@
 
                                         <td style="color: black ">{{ $i++ }}</td>
                                         <td style="color: black ">{{ $order->order_number }}</td>
-                                        <td style="color: black ">{{ $order->customer->name }} | {{ $order->customer->phone }} |
+                                        <td style="color: black ">{{ $order->customer->name }} |
+                                            {{ $order->customer->phone }} |
                                             {{ $order->customer->address ?? '' }}</td>
                                         <td style="color: black ">
                                             @if (!is_null($order->type_lavage))
@@ -338,12 +359,13 @@
                                         </td>
                                     </tr>
 
-                                    <div class="modal fade" id="modal-destroy-customers{{ $order->id }}" tabindex="-1"
-                                        aria-labelledby="defaultModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modal-destroy-customers{{ $order->id }}"
+                                        tabindex="-1" aria-labelledby="defaultModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="defaultModalLabel">Suppréssion en cours </h4>
+                                                    <h4 class="modal-title" id="defaultModalLabel">Suppréssion en cours
+                                                    </h4>
                                                     <button type="button" class="btn btn-light btn-circle dismiss"
                                                         data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true" class="material-icons">close</span>
@@ -403,4 +425,3 @@
         {!! $chart4->renderJs() !!}
     </div>
 @endsection
-
