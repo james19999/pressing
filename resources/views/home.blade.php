@@ -336,24 +336,27 @@
 
                                             <div class="btn-group btn-group-justified">
 
-                                                <a href="{{ route('orders.edit', $order) }}" style="color: white"
-                                                    type="button"
-                                                    class="btn btn-warning  {{ $order->status == 'delivered' && $order->payment_method == 'Payer' ? 'disabled' : '' }}  "
-                                                    data-hover="tooltip">
-                                                    <i class="material-icons">edit</i>
-                                                    Modifier</a>
                                                 <a href="{{ route('orders.show', $order) }}" style="color: white"
                                                     type="button" class="btn btn-info" data-hover="tooltip">
                                                     <i class="material-icons">remove_red_eye</i>
                                                     Détails</a>
+                                                @if (auth()->user()->hasRole('Super admin'))
+                                                    <a href="{{ route('orders.edit', $order) }}" style="color: white"
+                                                        type="button"
+                                                        class="btn btn-warning  {{ $order->status == 'delivered' && $order->payment_method == 'Payer' ? 'disabled' : '' }}  "
+                                                        data-hover="tooltip">
+                                                        <i class="material-icons">edit</i>
+                                                        Modifier</a>
 
-                                                <a href="{{ route('orders.destroy', $order) }}" style="color: white"
-                                                    type="button" class="btn btn-danger" data-hover="tooltip"
-                                                    data-placement="top"
-                                                    data-target="#modal-destroy-customers{{ $order->id }}"
-                                                    data-toggle="modal" id="modal-destroy">
-                                                    <i class="material-icons">delete</i>
-                                                    Supprimer</a>
+                                                    <a href="{{ route('orders.destroy', $order) }}" style="color: white"
+                                                        type="button" class="btn btn-danger" data-hover="tooltip"
+                                                        data-placement="top"
+                                                        data-target="#modal-destroy-customers{{ $order->id }}"
+                                                        data-toggle="modal" id="modal-destroy">
+                                                        <i class="material-icons">delete</i>
+                                                        Supprimer</a>
+                                                @endif
+
 
                                             </div>
                                         </td>
