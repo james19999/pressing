@@ -9,7 +9,7 @@
 
                     <!-- Button trigger modal -->
 
-                    @if (auth()->user()->hasRole('Super admin'))
+                    @if (auth()->user()->hasRole('Admin'))
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModal">
                             Ajouter un rôle
                         </button>

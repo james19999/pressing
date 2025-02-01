@@ -73,7 +73,7 @@
                                     <td style="color: black ">{{ $permission->name }} </td>
 
                                     <td style="color: black " class=" pull-right">
-                                        @if (auth()->user()->hasRole('Super admin'))
+                                        @if (auth()->user()->hasRole('Admin'))
                                             <div class="btn-group btn-group-justified">
 
                                                 <a href="{{ route('permissions.update', $permission) }}"

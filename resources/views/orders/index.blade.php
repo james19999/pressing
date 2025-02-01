@@ -121,7 +121,7 @@
                                                 type="button" class="btn btn-info" data-hover="tooltip">
                                                 <i class="material-icons">remove_red_eye</i>
                                                 Détails</a>
-                                            @if (auth()->user()->hasRole('Super admin'))
+                                            @if (auth()->user()->hasRole('Admin'))
                                                 <a href="{{ route('orders.edit', $order) }}" style="color: white"
                                                     type="button"
                                                     class="btn btn-warning  {{ $order->status == 'delivered' && $order->payment_method == 'Payer' ? 'disabled' : '' }}  "

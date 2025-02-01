@@ -7,7 +7,7 @@
                 <div class="row">
 
                     <!-- Button trigger modal -->
-                    @if (auth()->user()->hasRole('Super admin'))
+                    @if (auth()->user()->hasRole('Admin'))
                         <a href="{{ route('users.create') }}" type="button" class="btn btn-primary">
                             Ajouter un utilisateur
                         </a>
