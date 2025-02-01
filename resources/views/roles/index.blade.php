@@ -9,7 +9,7 @@
 
                     <!-- Button trigger modal -->
 
-                    @if (auth()->user()->hasRole('Admin'))
+                    @if (auth()->user()->hasRole('Super admin'))
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModal">
                             Ajouter un rôle
                         </button>
@@ -73,7 +73,6 @@
 
                                     <td style="color: black " class=" pull-right">
                                         @if (auth()->user()->hasRole('Super admin'))
-                                            //
                                             <div class="btn-group btn-group-justified">
 
                                                 <a href="{{ route('roles.update', $role) }}" style="color: white"

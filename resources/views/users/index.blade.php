@@ -7,11 +7,11 @@
                 <div class="row">
 
                     <!-- Button trigger modal -->
-                    @if (auth()->user()->hasRole('Admin'))
+                    @if (auth()->user()->hasRole('Super admin'))
+                        <a href="{{ route('users.create') }}" type="button" class="btn btn-primary">
+                            Ajouter un utilisateur
+                        </a>
                     @endif
-                    <a href="{{ route('users.create') }}" type="button" class="btn btn-primary">
-                        Ajouter un utilisateur
-                    </a>
                     @include('partials.nav-links')
                 </div>
                 <!-- Modal -->
@@ -87,25 +87,25 @@
                                     <td style="color: black " class=" pull-right">
 
                                         @if (auth()->user()->hasRole('Super admin'))
+                                            <div class="btn-group btn-group-justified">
+
+                                                <a href="{{ route('users.edit', $user) }}" style="color: white"
+                                                    type="button" class="btn btn-warning" data-hover="tooltip">
+                                                    <i class="material-icons">edit</i>
+                                                    Modifier</a>
+
+                                                <a href="{{ route('users.destroy', $user) }}" style="color: white"
+                                                    type="button" class="btn btn-danger" data-hover="tooltip"
+                                                    data-placement="top"
+                                                    data-target="#modal-destroy-customers{{ $user->id }}"
+                                                    data-toggle="modal" id="modal-destroy">
+                                                    <i class="material-icons">delete</i>
+                                                    Supprimer</a>
+
+
+
+                                            </div>
                                         @endif
-                                        <div class="btn-group btn-group-justified">
-
-                                            <a href="{{ route('users.edit', $user) }}" style="color: white" type="button"
-                                                class="btn btn-warning" data-hover="tooltip">
-                                                <i class="material-icons">edit</i>
-                                                Modifier</a>
-
-                                            <a href="{{ route('users.destroy', $user) }}" style="color: white"
-                                                type="button" class="btn btn-danger" data-hover="tooltip"
-                                                data-placement="top"
-                                                data-target="#modal-destroy-customers{{ $user->id }}"
-                                                data-toggle="modal" id="modal-destroy">
-                                                <i class="material-icons">delete</i>
-                                                Supprimer</a>
-
-
-
-                                        </div>
 
                                     </td>
                                 </tr>
