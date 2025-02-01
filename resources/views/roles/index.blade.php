@@ -8,9 +8,12 @@
                 <div class="row">
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModal">
-                        Ajouter un rôle
-                    </button>
+
+                    @if (auth()->user()->hasRole('Super admin'))
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#defaultModal">
+                            Ajouter un rôle
+                        </button>
+                    @endif
                     @include('partials.nav-links')
                 </div>
                 <!-- Modal -->
@@ -69,33 +72,36 @@
                                     <td style="color: black ">{{ $role->name }} </td>
 
                                     <td style="color: black " class=" pull-right">
+                                        @if (auth()->user()->hasRole('Super admin'))
+                                            //
+                                            <div class="btn-group btn-group-justified">
 
-                                        <div class="btn-group btn-group-justified">
+                                                <a href="{{ route('roles.update', $role) }}" style="color: white"
+                                                    type="button" class="btn btn-warning" data-hover="tooltip"
+                                                    data-placement="top"
+                                                    data-target="#modal-edit-customers{{ $role->id }}"
+                                                    data-toggle="modal" id="modal-edit">
+                                                    <i class="material-icons">edit</i>
+                                                    Modifier</a>
 
-                                            <a href="{{ route('roles.update', $role) }}" style="color: white" type="button"
-                                                class="btn btn-warning" data-hover="tooltip" data-placement="top"
-                                                data-target="#modal-edit-customers{{ $role->id }}" data-toggle="modal"
-                                                id="modal-edit">
-                                                <i class="material-icons">edit</i>
-                                                Modifier</a>
+                                                <a href="{{ route('add-role-permission', $role) }}" style="color: white"
+                                                    type="button" class="btn btn-info" data-hover="tooltip"
+                                                    data-placement="top">
+                                                    <i class="material-icons">perm_identity</i>
+                                                    Attribuer des permissions</a>
 
-                                            <a href="{{ route('add-role-permission',$role) }}" style="color: white"
-                                                type="button" class="btn btn-info" data-hover="tooltip"
-                                                data-placement="top">
-                                                <i class="material-icons">perm_identity</i>
-                                                Attribuer des permissions</a>
-
-                                            <a href="{{ route('roles.destroy', $role) }}" style="color: white"
-                                                type="button" class="btn btn-danger" data-hover="tooltip"
-                                                data-placement="top"
-                                                data-target="#modal-destroy-customers{{ $role->id }}"
-                                                data-toggle="modal" id="modal-destroy">
-                                                <i class="material-icons">delete</i>
-                                                Supprimer</a>
-
+                                                <a href="{{ route('roles.destroy', $role) }}" style="color: white"
+                                                    type="button" class="btn btn-danger" data-hover="tooltip"
+                                                    data-placement="top"
+                                                    data-target="#modal-destroy-customers{{ $role->id }}"
+                                                    data-toggle="modal" id="modal-destroy">
+                                                    <i class="material-icons">delete</i>
+                                                    Supprimer</a>
 
 
-                                        </div>
+
+                                            </div>
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -122,7 +128,8 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
                                                     data-dismiss="modal">Fermer</button>
-                                                <button type="submit" class="btn btn-success text-white">Modifier</button>
+                                                <button type="submit"
+                                                    class="btn btn-success text-white">Modifier</button>
                                             </div>
                                             </form>
                                         </div>

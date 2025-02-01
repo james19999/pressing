@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -51,7 +50,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('pressings.index') }}" class="{{ request()->is('pressings') ? 'active' : '' }}">
+                        <a href="{{ route('pressings.index') }}"
+                            class="{{ request()->is('pressings') ? 'active' : '' }}">
                             <span class="icon material-icons">checkroom</span>
                             <span class="text">Pressing</span>
                         </a>
@@ -63,7 +63,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('garments.index') }}" class=" {{ request()->is('garments') ? 'active' : '' }}">
+                        <a href="{{ route('garments.index') }}"
+                            class=" {{ request()->is('garments') ? 'active' : '' }}">
                             <span class="icon material-icons">folder_open</span>
                             <span class="text">Linges</span>
                         </a>
@@ -81,13 +82,13 @@
                         </a>
                         <ul class="collapse" id="errorPages">
                             <li>
-                                <a href="{{ route('permissions.index') }}"  class="">
+                                <a href="{{ route('permissions.index') }}" class="">
                                     <span class="icon material-icons">remove</span>
                                     <span class="text">Lite des permissions</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('roles.index') }}"  class="">
+                                <a href="{{ route('roles.index') }}" class="">
                                     <span class="icon material-icons">remove</span>
                                     <span class="text">Liste des rôles</span>
                                 </a>
@@ -379,7 +380,8 @@
                         </li>
 
                         <li class="nav-item icon">
-                            <button class="nav-link pulse" id="navbarDropdown" data-toggle="dropdown" data-offset="0" aria-haspopup="true" aria-expanded="false">
+                            <button class="nav-link pulse" id="navbarDropdown" data-toggle="dropdown"
+                                data-offset="0" aria-haspopup="true" aria-expanded="false">
                                 <span class="material-icons">notifications</span>
                             </button>
                             <div class="p-0 dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -397,7 +399,8 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 shadow-lg card">
-                                        <div class="card-body"> File upload successful.<small class="d-block">5 mins ago</small>
+                                        <div class="card-body"> File upload successful.<small class="d-block">5 mins
+                                                ago</small>
                                         </div>
                                     </div>
                                     <div class="mb-3 shadow-lg card">
@@ -416,31 +419,33 @@
                         <li class="nav-item dropdown with-caret">
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <div class="avatar avatar-sm avatar-dnd bg-primary">
-                                    <img src="assets/images/avatar/team-4.jpg" class="align-top avatar-img rounded-circle" alt="">
+                                    <img src="assets/images/avatar/team-4.jpg"
+                                        class="align-top avatar-img rounded-circle" alt="">
                                 </div>
                             </a>
                             <div class="p-1 dropdown-menu dropdown-menu-right">
 
                                 <span class="dropdown-item">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name ?? '' }}
                                 </span>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
-                                 {{ __('Déconnexion') }}
-                             </a>
+                                    {{ __('Déconnexion') }}
+                                </a>
 
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                 @csrf
-                             </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
                                 <div class="dropdown-divider"></div>
                                 <span class="dropdown-item-text">
                                     @php
-                                        $Pressings=App\Models\Precing::all();
+                                        $Pressings = App\Models\Precing::all();
                                     @endphp
-                                     @foreach ($Pressings as $Pressing )
-                                          <a href="{{ route('home',$Pressing) }}">{{ $Pressing->name }}</a>
-                                     @endforeach
+                                    @foreach ($Pressings as $Pressing)
+                                        <a href="{{ route('home', $Pressing) }}">{{ $Pressing->name }}</a>
+                                    @endforeach
                                 </span>
                             </div>
                         </li>
@@ -448,7 +453,7 @@
                 </div>
             </header>
             <div class="container main-content">
-              @yield('content')
+                @yield('content')
             </div>
         </div>
     </div>
@@ -488,34 +493,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-      <script>
+    <script>
         $(document).ready(function() {
-        $('#example').DataTable( {
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        } );
-        } );
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
         $(document).ready(function() {
-        $('#examples').DataTable( {
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        } );
-        } );
+            $('#examples').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
 
 
-     function printDiv(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
 
-        document.body.innerHTML = printContents;
+            document.body.innerHTML = printContents;
 
-        window.print();
+            window.print();
 
-        document.body.innerHTML = originalContents;
+            document.body.innerHTML = originalContents;
         }
 
 
@@ -526,9 +531,7 @@
             $('.js-example-basic-multiple').select2();
 
         });
-
-
-      </script>
+    </script>
     @livewireScripts
 
 </body>
