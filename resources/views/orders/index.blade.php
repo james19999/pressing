@@ -5,6 +5,39 @@
     <div class="col-12 ">
         <div class="row">
             @include('partials.navs-links')
+            @if ($orders->count() > 0)
+                <h3>Total des commandes : {{ number_format($totalAmount, 2, ',', ' ') }} XOF</h3>
+            @else
+                <p>Aucune commande trouvée.</p>
+            @endif
+
+            <form action="{{ route('orders.index') }}" method="GET">
+                @csrf
+
+                <div>
+                    <label for="year">Année :</label>
+                    <select name="year" id="year">
+                        <option value="">Toutes</option>
+                        @foreach (range(date('Y'), date('Y') - 5) as $year)
+                            <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                                {{ $year }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label for="filter">Statut :</label>
+                    <select name="filter" id="filter">
+                        <option value="">Tous</option>
+                        <option value="Impayer" {{ request('filter') == 'Impayer' ? 'selected' : '' }}>Impayé</option>
+                        <option value="Payer" {{ request('filter') == 'Payer' ? 'selected' : '' }}>Payé</option>
+                    </select>
+                </div>
+
+                <button type="submit">Filtrer</button>
+            </form>
+
         </div>
 
         <div class="shadow card">
@@ -46,7 +79,8 @@
 
                                     <td style="color: black ">{{ $i++ }}</td>
                                     <td style="color: black ">{{ $order->order_number }}</td>
-                                    <td style="color: black ">{{ $order->customer->name }} | {{ $order->customer->phone }} |
+                                    <td style="color: black ">{{ $order->customer->name }} | {{ $order->customer->phone }}
+                                        |
                                         {{ $order->customer->address ?? '' }}</td>
                                     <td style="color: black ">
                                         @if (!is_null($order->type_lavage))

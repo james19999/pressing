@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Traits\TraitDefault;
 use App\Mail\SendMailToLivreur;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 
 class OrderRipository{
