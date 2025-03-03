@@ -29,12 +29,12 @@ class OrderController extends Controller
      }
     public function index(Request $request)
     {
-        $orders = Order::with('customer') // Charger le client associé
-        ->when($request->year, function ($query, $year) {
-            return $query->whereYear('created_at', $year);
+        $orders = Order::with('customer')
+        ->when($request->date, function ($query, $date) {
+            return $query->whereDate('created_at', $date);
         })
         ->when($request->filter, function ($query, $status) {
-            return $query->where('status', $status);
+            return $query->where('payment_method', $status);
         })
         ->latest()
         ->get();

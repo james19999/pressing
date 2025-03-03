@@ -15,15 +15,8 @@
                 @csrf
 
                 <div>
-                    <label for="year">Année :</label>
-                    <select name="year" id="year">
-                        <option value="">Toutes</option>
-                        @foreach (range(date('Y'), date('Y') - 5) as $year)
-                            <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
-                                {{ $year }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <label for="year">Date :</label>
+                    <input type="date" name="date" id="date" value="{{ request('date') }}">
                 </div>
 
                 <div>
