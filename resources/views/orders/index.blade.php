@@ -5,31 +5,45 @@
     <div class="col-12 ">
         <div class="row">
             @include('partials.navs-links')
+            @include('partials.navs-links')
+
             @if ($orders->count() > 0)
-                <h3>Total des commandes : {{ number_format($totalAmount, 2, ',', ' ') }} XOF</h3>
+                <div class="alert alert-info text-center">
+                    <h3>Total des commandes : <strong>{{ number_format($totalAmount, 2, ',', ' ') }} XOF</strong></h3>
+                </div>
             @else
-                <p>Aucune commande trouvée.</p>
+                <div class="alert alert-warning text-center">
+                    <p>Aucune commande trouvée.</p>
+                </div>
             @endif
 
-            <form action="{{ route('orders.index') }}" method="GET">
-                @csrf
+            <div class="container mt-4">
+                <form action="{{ route('orders.index') }}" method="GET" class="row g-3">
+                    @csrf
 
-                <div>
-                    <label for="year">Date :</label>
-                    <input type="date" name="date" id="date" value="{{ request('date') }}">
-                </div>
+                    <!-- Champ Date -->
+                    <div class="col-md-4">
+                        <label for="date" class="form-label">Date :</label>
+                        <input type="date" name="date" id="date" class="form-control"
+                            value="{{ request('date') }}">
+                    </div>
 
-                <div>
-                    <label for="filter">Statut :</label>
-                    <select name="filter" id="filter">
-                        <option value="">Tous</option>
-                        <option value="Impayer" {{ request('filter') == 'Impayer' ? 'selected' : '' }}>Impayé</option>
-                        <option value="Payer" {{ request('filter') == 'Payer' ? 'selected' : '' }}>Payé</option>
-                    </select>
-                </div>
+                    <!-- Champ Statut -->
+                    <div class="col-md-4">
+                        <label for="filter" class="form-label">Statut :</label>
+                        <select name="filter" id="filter" class="form-select">
+                            <option value="">Tous</option>
+                            <option value="Impayer" {{ request('filter') == 'Impayer' ? 'selected' : '' }}>Impayé</option>
+                            <option value="Payer" {{ request('filter') == 'Payer' ? 'selected' : '' }}>Payé</option>
+                        </select>
+                    </div>
 
-                <button type="submit">Filtrer</button>
-            </form>
+                    <!-- Bouton de soumission -->
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+                    </div>
+                </form>
+            </div>
 
         </div>
 
