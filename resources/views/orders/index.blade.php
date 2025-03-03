@@ -8,7 +8,7 @@
 
 
             @if ($orders->count() > 0)
-                <div class="alert alert-info text-center">
+                <div class=" text-center">
                     <h3>Total des commandes : <strong>{{ number_format($totalAmount, 2, ',', ' ') }} XOF</strong></h3>
                 </div>
             @else
@@ -31,7 +31,7 @@
                     <!-- Champ Statut -->
                     <div class="col-md-4">
                         <label for="filter" class="form-label">Statut :</label>
-                        <select name="filter" id="filter" class="form-select">
+                        <select name="filter" id="filter" class="form-control">
                             <option value="">Tous</option>
                             <option value="Impayer" {{ request('filter') == 'Impayer' ? 'selected' : '' }}>Impayé</option>
                             <option value="Payer" {{ request('filter') == 'Payer' ? 'selected' : '' }}>Payé</option>
