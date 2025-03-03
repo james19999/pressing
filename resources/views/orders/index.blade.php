@@ -5,7 +5,7 @@
     <div class="col-12 ">
         <div class="row">
             @include('partials.navs-links')
-            @include('partials.navs-links')
+
 
             @if ($orders->count() > 0)
                 <div class="alert alert-info text-center">
