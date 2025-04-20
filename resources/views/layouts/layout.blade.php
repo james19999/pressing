@@ -69,34 +69,41 @@
                             <span class="text">Linges</span>
                         </a>
                     </li>
-                    <li class="separator">
-                        <span>Utilisateurs</span>
-                    </li>
+                    @if (auth()->user()->hasRole('Super admin'))
+                        <li>
+                            <a href="{{ route('order-trash') }}"
+                                class=" {{ request()->is('order-trash') ? 'active' : '' }}">
+                                <span class="icon material-icons">folder_open</span>
+                                <span class="text">Corbeilles</span>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <span>Utilisateurs</span>
+                        </li>
 
 
-                    <li>
-                        <a href="#errorPages" class="" data-toggle="collapse">
-                            <span class="caret material-icons">arrow_right</span>
-                            <span class="icon material-icons">groups</span>
-                            <span class="text">Rôle & Permissions</span>
-                        </a>
-                        <ul class="collapse" id="errorPages">
-                            <li>
-                                <a href="{{ route('permissions.index') }}" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Lite des permissions</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('roles.index') }}" class="">
-                                    <span class="icon material-icons">remove</span>
-                                    <span class="text">Liste des rôles</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-
+                        <li>
+                            <a href="#errorPages" class="" data-toggle="collapse">
+                                <span class="caret material-icons">arrow_right</span>
+                                <span class="icon material-icons">groups</span>
+                                <span class="text">Rôle & Permissions</span>
+                            </a>
+                            <ul class="collapse" id="errorPages">
+                                <li>
+                                    <a href="{{ route('permissions.index') }}" class="">
+                                        <span class="icon material-icons">remove</span>
+                                        <span class="text">Lite des permissions</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('roles.index') }}" class="">
+                                        <span class="icon material-icons">remove</span>
+                                        <span class="text">Liste des rôles</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                     {{--  <li class="separator">
                         <span>UI Elements & Components</span>
                     </li>

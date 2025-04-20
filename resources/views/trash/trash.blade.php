@@ -7,15 +7,9 @@
             @include('partials.navs-links')
 
 
-            @if ($orders->count() > 0)
-                <div class="text-center ">
-                    <h3>Total des commandes : <strong>{{ number_format($totalAmount, 2, ',', ' ') }} XOF</strong></h3>
-                </div>
-            @else
-                <div class="text-center alert alert-warning">
-                    <p>Aucune commande trouvée.</p>
-                </div>
-            @endif
+            <div class="text-center alert alert-warning">
+                <p>Corbeilles.</p>
+            </div>
 
             <div class="container mt-4">
                 <form action="{{ route('orders.index') }}" method="GET" class="row g-3">
@@ -72,6 +66,7 @@
 
                                 <th style="width: 20%">Date Réception </th>
                                 <th style="width: 20%">Date Livraison </th>
+                                <th style="width: 20%">Supprimer par </th>
                                 <th style="width: 20%">Actions</th>
                             </tr>
 
@@ -151,33 +146,30 @@
                                         </div>  --}}
 
                                     </td>
+                                    <td style="color: black ">
+                                        {{ $order->detete_par ?? '' }}
+                                        {{--  <div>
+                                            <p>f</p>
+                                        </div>  --}}
+
+                                    </td>
 
 
                                     <td style="color: black " class=" pull-right">
 
                                         <div class="btn-group btn-group-justified">
 
-
-                                            <a href="{{ route('orders.show', $order) }}" style="color: white"
+                                            <a href="{{ route('restor-trash', $order) }}" style="color: white"
                                                 type="button" class="btn btn-info" data-hover="tooltip">
-                                                <i class="material-icons">remove_red_eye</i>
-                                                Détails</a>
-                                            {{--  @if (auth()->user()->hasRole('Super admin'))  --}}
-                                            <a href="{{ route('orders.edit', $order) }}" style="color: white"
-                                                type="button"
-                                                class="btn btn-warning  {{ $order->status == 'delivered' && $order->payment_method == 'Payer' ? 'disabled' : '' }}  "
-                                                data-hover="tooltip">
-                                                <i class="material-icons">edit</i>
-                                                Modifier</a>
-
-
-                                            <a href="{{ route('orders.destroy', $order) }}" style="color: white"
+                                                <i class="material-icons">restore</i>
+                                            </a>
+                                            <a href="{{ route('force-trash', $order) }}" style="color: white"
                                                 type="button" class="btn btn-danger" data-hover="tooltip"
                                                 data-placement="top"
                                                 data-target="#modal-destroy-customers{{ $order->id }}"
                                                 data-toggle="modal" id="modal-destroy">
                                                 <i class="material-icons">delete</i>
-                                                Supprimer</a>
+                                            </a>
                                             {{--  @endif  --}}
 
 
@@ -199,7 +191,7 @@
                                             <div class="modal-body">
                                                 <h2 style="text-align: center"> Voulez-vous vraiment supprimer ?
                                                 </h2>
-                                                <form action="{{ route('orders.destroy', $order) }}" method="POST">
+                                                <form action="{{ route('force-trash', $order) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                             </div>
@@ -230,6 +222,7 @@
                                 <th style="width: 20%">Reste </th>
                                 <th style="width: 20%">Date Réception </th>
                                 <th style="width: 20%">Date Livraison </th>
+                                <th style="width: 20%">Supprimer par </th>
                                 <th style="width: 20%">Actions</th>
                             </tr>
                         </tfoot>

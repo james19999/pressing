@@ -8,6 +8,7 @@ use App\Models\Garment;
 use App\Models\OrderItem;
 use App\Traits\TraitDefault;
 use App\Mail\SendMailToLivreur;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
@@ -109,6 +110,8 @@ class OrderRipository{
 
     public function delete_order($id){
       $order=$this->get_order($id);
+      $order->detete_par = Auth::user()->name; // ou Auth::user()->id
+      $order->save();
       $order->delete();
 
       toastr()->success('Commande supprimé');
@@ -210,5 +213,23 @@ class OrderRipository{
             $order->save();
             return back();
         }
+    }
+
+    public function onlyTrashed(){
+         return Order::onlyTrashed()->get();
+    }
+
+    public function restor($id){
+        $order = Order::onlyTrashed()->find($id);
+           $order->restore();
+        return back();
+
+
+    }
+    public function deleteforceDelete ($id){
+         $order =  Order::onlyTrashed()->find($id);
+        $order->forceDelete();
+        return back();
+
     }
 }

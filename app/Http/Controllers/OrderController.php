@@ -115,4 +115,17 @@ class OrderController extends Controller
         return $this->orderRipository->pay_reste($id);
     }
 
+
+   public function allTrash (){
+    $orders= $this->orderRipository->onlyTrashed();
+
+    return view('trash.trash',compact('orders'));
+   }
+   public function deleteforce ($id){
+    return $this->orderRipository->deleteforceDelete($id);
+   }
+   public function restordeleted ($id){
+    return $this->orderRipository->restor($id);
+   }
+
 }
