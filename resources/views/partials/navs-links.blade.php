@@ -5,6 +5,8 @@
         href="{{ route('orders.create') }}">Passez une commande</a>
     <a class="btn btn-primary  {{ request()->is('costumers') ? 'actives' : '' }} "
         href="{{ route('costumers.index') }}">Clients</a>
+    <a class="btn btn-primary  {{ request()->is('topcostumer') ? 'actives' : '' }} " href="{{ route('topcostumer') }}">Top
+        client</a>
     <a class="btn btn-primary  {{ request()->is('costumers') ? 'actives' : '' }} "
         href="{{ route('order-delivered-month') }}">Commandes livrées</a>
 </div>

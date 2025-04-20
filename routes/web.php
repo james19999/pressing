@@ -32,6 +32,7 @@ Route::resource('garments', GarmentController::class);
 Route::resource('pressings',PrecingController::class);
 Route::resource('orders',OrderController::class);
 Route::resource('costumers',CostumerController::class);
+Route::get('costumers/top/tops',[CostumerController::class,'topcostumer'])->name('topcostumer');
 Route::put('paid/order/valid/{id}',[OrderController::class,'paid_order_valid'])->name('paid-order-valid');
 Route::put('change/status/{id}',[OrderController::class,'change_status_order'])->name('change-status-order');
 Route::get('order/delivered/month',[OrderController::class,'order_delivered_month'])->name('order-delivered-month');

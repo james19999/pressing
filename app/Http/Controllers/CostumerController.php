@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCostumer;
 use App\Http\Requests\UpdateCostumer;
@@ -35,5 +37,42 @@ class CostumerController extends Controller
     {
     # code...
     return $this->custumerRipository->delete_costumer($id);
+    }
+
+
+    public function topcostumer(Request $request)
+    {
+
+        $montharray = [
+            1 => "Janvier",
+            2 => "Février",
+            3 => "Mars",
+            4 => "Avril",
+            5 => "Mai",
+            6 => "Juin",
+            7 => "Juillet",
+            8 => "Août",
+            9 => "Septembre",
+            10 => "Octobre",
+            11 => "Novembre",
+            12 => "Décembre"
+         ];
+
+
+
+                # code...
+                $costumers = Customer::withCount('orders')
+                ->withSum('orders', 'total')
+                ->orderByDesc('orders_sum_total')
+                ->when($request->month, function ($query, $month) {
+                    return $query->whereMonth('created_at', $month);
+                })
+                ->whereYear('created_at', Carbon::now()->year)
+                ->when($request->limit, function ($query, $limit) {
+                    return $query->limit($limit);
+                })
+                ->get();
+                return view('costumers.top_costumer',compact('costumers','montharray'));
+
     }
 }

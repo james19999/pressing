@@ -9,7 +9,7 @@
 
             @if ($orders->count() > 0)
                 <div class="text-center ">
-                    <h3>Total des commandes : <strong>{{ number_format($totalAmount, 2, ',', ' ') }} XOF</strong></h3>
+                    <h3>Total : <strong>{{ number_format($totalAmount, 2, ',', ' ') }} XOF</strong></h3>
                 </div>
             @else
                 <div class="text-center alert alert-warning">
