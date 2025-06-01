@@ -39,7 +39,9 @@ class OrderController extends Controller
         ->latest()
         ->get();
         $totalAmount = $orders->sum('total');
-        return view('orders.index', compact('orders','totalAmount'));
+        $totalAvance = $orders->sum('advance');
+        $totalReste = $orders->sum('reste');
+        return view('orders.index', compact('orders','totalAmount','totalAvance','totalReste'));
     }
 
     public function create()

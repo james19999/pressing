@@ -7,15 +7,52 @@
             @include('partials.navs-links')
 
 
-            @if ($orders->count() > 0)
-                <div class="text-center ">
-                    <h3>Total : <strong>{{ number_format($totalAmount, 2, ',', ' ') }} XOF</strong></h3>
+
+            <div class="container mt-4">
+                <div class="row">
+                    <!-- Colonne 1 -->
+                    <div class="col-md-4">
+                        <div class="mb-3 text-white card bg-primary">
+                            <div class="card-header">Total</div>
+                            <div class="card-body">
+                                @if ($orders->count() > 0)
+                                    <h5 class="card-title">
+                                        {{ number_format($totalAmount, 2, ',', ' ') }} XOF
+                                    </h5>
+                                @else
+                                    <div class="text-center alert alert-warning">
+                                        <p>Aucune commande trouvée.</p>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonne 2 -->
+                    <div class="col-md-4">
+                        <div class="mb-3 text-white card bg-success">
+                            <div class="card-header">Avance</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Total : {{ $totalAvance }}</h5>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonne 3 -->
+                    <div class="col-md-4">
+                        <div class="mb-3 text-white card bg-warning">
+                            <div class="card-header">Restant</div>
+                            <div class="card-body">
+                                <h5 class="card-title">Total : {{ $totalReste }}</h5>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            @else
-                <div class="text-center alert alert-warning">
-                    <p>Aucune commande trouvée.</p>
-                </div>
-            @endif
+            </div>
+
+
 
             <div class="container mt-4">
                 <form action="{{ route('orders.index') }}" method="GET" class="row g-3">
